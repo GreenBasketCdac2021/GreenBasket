@@ -6,6 +6,8 @@ import ForgotPassword from './Components/Login/ForgotPassword';
 
 import Title from './Components/Title/Title';
 import './App.css';
+import Dashboard from './Components/Dashboard/Dashboard';
+import Cart from './Components/Cart/Cart';
 
 function App() {
   return (
@@ -13,14 +15,18 @@ function App() {
       <Title pageTitle="Green Basket"/>
       <Router>
         <Switch>
-            
+            <Route path="/" exact component={Dashboard}/>
             {/*login*/} 
-            <Route path="/" exact component={Login}/>
+            <Route path="/login" exact component={Login}/>
             <Route path="/signup" exact component={Signup}/>
             <Route path="/forgotPassword" exact component={ForgotPassword}/>
+
+            
+            <Route path="/cart" exact component={Cart}/>
             
           </Switch>
       </Router>
+      
     </div>
   );
 }

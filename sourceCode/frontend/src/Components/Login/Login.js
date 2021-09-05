@@ -52,7 +52,7 @@ export default function Login() {
     <Grid container component="main" className={classes.root} >
       <CssBaseline />
       <Grid item lg={4} md={1} sm={1}/>
-      <Grid item lg={4} md={10} sm={10} xs={12} component={Paper} elevation={6} square style={{marginTop:'5vh',marginBottom:'5vh'}}>
+      <Grid item lg={4} md={10} sm={10} xs={12} component={Paper} elevation={6} square style={{marginTop:'5vh',marginBottom:'10vh'}}>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockRoundedIcon />
