@@ -1,6 +1,7 @@
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import Login from './Components/Login/Login';
+import AdminLogin from './Components/Login/AdminLogin';
 import Signup from './Components/Login/Signup';
 import ForgotPassword from './Components/Login/ForgotPassword';
 
@@ -16,11 +17,14 @@ function App() {
       <Router>
         <Switch>
             <Route path="/" exact component={Dashboard}/>
+            
+            
             {/*login*/} 
             <Route path="/login" exact component={Login}/>
             <Route path="/signup" exact component={Signup}/>
             <Route path="/forgotPassword" exact component={ForgotPassword}/>
 
+            <Route path="/AdminLogin" exact component={AdminLogin}/>
             
             <Route path="/cart" exact component={Cart}/>
             
