@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
+import Login from './Components/Login/Login';
+import Signup from './Components/Login/Signup';
+import ForgotPassword from './Components/Login/ForgotPassword';
+
+import Title from './Components/Title/Title';
 import './App.css';
+import Dashboard from './Components/Dashboard/Dashboard';
+import Cart from './Components/Cart/Cart';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Title pageTitle="Green Basket"/>
+      <Router>
+        <Switch>
+            <Route path="/" exact component={Dashboard}/>
+            {/*login*/} 
+            <Route path="/login" exact component={Login}/>
+            <Route path="/signup" exact component={Signup}/>
+            <Route path="/forgotPassword" exact component={ForgotPassword}/>
+
+            
+            <Route path="/cart" exact component={Cart}/>
+            
+          </Switch>
+      </Router>
+      
     </div>
   );
 }
