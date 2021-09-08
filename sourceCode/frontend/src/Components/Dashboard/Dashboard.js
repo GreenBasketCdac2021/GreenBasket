@@ -1,14 +1,15 @@
-
-export default function Dashboard() {
-    return (
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
-            <h1>
-                <a href="AdminLogin">AdminLogin</a>&nbsp;
-                <a href="login">Login</a>&nbsp;
-                <a href="cart">Cart</a>
-            </h1>
-        </div>
-    );
+import React from 'react';
+import NavigationBar from './NavigationBar'
+class Dashboard extends React.Component {
+    render(){    
+        return (
+                <div>     
+                    <NavigationBar/>
+                    
+                </div>
+        );
+    }
 }
+export default Dashboard;
 
 
