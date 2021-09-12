@@ -1,11 +1,11 @@
 import React from 'react';
-import {Navbar,Nav,Container,Row} from 'react-bootstrap';
+import {Navbar,Nav,Container} from 'react-bootstrap';
 import logo from './logo.png';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LockIcon from '@material-ui/icons/Lock';
 
-class NavigationBar extends React.Component{
+class Header extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -17,7 +17,6 @@ class NavigationBar extends React.Component{
         let LoginUser;
         if(this.state.auth){
             LoginUser=<>
-                        
                         <AccountCircleIcon/>
                         {this.state.userName}
             </>;
@@ -47,4 +46,4 @@ class NavigationBar extends React.Component{
         );
     };
 }
-export default NavigationBar;
+export default Header;

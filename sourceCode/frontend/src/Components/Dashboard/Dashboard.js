@@ -1,11 +1,12 @@
 import React from 'react';
-import NavigationBar from './NavigationBar'
+import Header from './Header';
+import Footer from './Footer';
 class Dashboard extends React.Component {
     render(){    
         return (
                 <div>     
-                    <NavigationBar/>
-                    
+                    <Header/>
+                    <Footer/>
                 </div>
         );
     }
