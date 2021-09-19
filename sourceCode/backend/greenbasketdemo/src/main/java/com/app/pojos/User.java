@@ -28,7 +28,7 @@ salary: '',*/
 @Entity
 @Table(name="users")
 @NoArgsConstructor
-@AllArgsConstructor
+
 @Setter
 @Getter
 @ToString
@@ -50,4 +50,19 @@ public class User extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	@Column(name="user_role",length = 20)	
 	private UserRole role;
+	
+	public User(String fName, String lastName, String email, String password, String address, LocalDate reg_date,
+			UserRole role) {
+		super();
+		this.fName = fName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.address = address;
+		this.reg_date = reg_date;
+		this.role = role;
+	}
+	
+	
 }
+
