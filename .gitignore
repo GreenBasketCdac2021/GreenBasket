@@ -1,3 +1,4 @@
 abc.txt
 /frontend\node_module\*
 node_modules
+/sourceCode\backend\greenbasketdemo\src\main\resources\application.properties

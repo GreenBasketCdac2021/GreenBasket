@@ -18,34 +18,35 @@ import com.app.service.IUserService;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/user")
 public class UserRestController {
-	public	UserRestController(){
-		 System.out.println("in constr of "+getClass().getName());
+	public UserRestController() {
+		System.out.println("in constr of " + getClass().getName());
 	}
-	 
+
 	@Autowired
 	IUserService userService;
-	
+
 	@PostMapping("/login")
-	public ResponseEntity<?> checkUser(@RequestBody User user){
-		User u=userService.validateUser(user);
-		if(u!=null) {
-			return new ResponseEntity<User>(u,HttpStatus.OK);
-		}else {
-			return new ResponseEntity<String>("{invalid credentialssss}",HttpStatus.OK);
+	public ResponseEntity<?> checkUser(@RequestBody User user) {
+		User u = userService.validateUser(user);
+		if (u != null) {
+			return new ResponseEntity<User>(u, HttpStatus.OK);
+		} else {
+
+			return new ResponseEntity<String>("invalid credentials", HttpStatus.OK);
 		}
 	}
-	
+
 	@PostMapping("/register")
-	public ResponseEntity<?> registerNewUser(@RequestBody User user){
-		String tempEmaiId = user.getEmail(); 
-		if (tempEmaiId != null && !"".equals(tempEmaiId)) { 
+	public ResponseEntity<?> registerNewUser(@RequestBody User user) {
+		String tempEmaiId = user.getEmail();
+		if (tempEmaiId != null && !"".equals(tempEmaiId)) {
 			User obj = userService.fetchUserByEmailId(tempEmaiId);
-			if(obj != null) { 
-				return new ResponseEntity<String>("User with emailId" + tempEmaiId +" already exist",HttpStatus.OK); 
-				} 
-			} 
-		User tempUser = null; 
-		tempUser =userService.registerUser(user);
-			  return new ResponseEntity<String>("user created successfully",HttpStatus.OK);
-			 }	
+			if (obj != null) {
+				return new ResponseEntity<String>("User with emailId" + tempEmaiId + " already exist", HttpStatus.OK);
+			}
+		}
+		User tempUser = null;
+		tempUser = userService.registerUser(user);
+		return new ResponseEntity<String>("user created successfully", HttpStatus.OK);
 	}
+}

@@ -19,7 +19,7 @@ const style = {
     fontWeight:'bold'
 };
 
-export default function SingUp() {
+export default function Login() {
     
     const [email, setTitle] = useState("");
     const [password, setPassword] = useState("");
@@ -41,7 +41,10 @@ export default function SingUp() {
             res=>res.json()
         
         ).then(
-            data=>console.log(data)
+            data=>{
+                console.log(data);
+                window.location.replace("http://localhost:3000");
+            }
         ).catch((err) => {
             alert("invalid Credentials")
         });
