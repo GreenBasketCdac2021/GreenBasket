@@ -10,10 +10,13 @@ class Footer extends React.Component{
             <div className="fixed-bottom">  
                 <Navbar  bg="dark" variant="dark">
                     <Container>
+                        <Navbar.Brand href="/"></Navbar.Brand>
+                        <Navbar.Brand href="/"></Navbar.Brand>
+                        
                         <Navbar.Brand href="/contact"><ContactsIcon/> Contact us</Navbar.Brand>
                         
                         <Navbar.Brand href="/about"><InfoIcon/> About us</Navbar.Brand>
-                        <Navbar.Brand href="/"></Navbar.Brand>
+                        
 
                     </Container>
                 </Navbar>

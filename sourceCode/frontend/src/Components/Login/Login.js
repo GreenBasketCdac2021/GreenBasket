@@ -1,117 +1,90 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import LockRoundedIcon from '@material-ui/icons/LockRounded';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {useState} from 'react';
+const style = {
+    maxWidth:'40%',
+    minWidth:'400px',
+    padding:'30px' ,
+    margin:'auto',
+    marginTop:"5vh",
+    // backgroundColor:'#4c5f7a',
+    backgroundColor:'white',
+    color:'black',
+    textAlign:'center',
+    borderRadius:'10pt',
+    fontWeight:'bold'
+};
 
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-    backgroundColor:'#E1EBAF',
-  },
-  image: {
-    backgroundImage: 'url(https://i.pinimg.com/originals/49/7c/a1/497ca14763086602e93eb16bcc095318.jpg)',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
-  paper: {
-    margin: theme.spacing(8, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.success.dark,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
-export default function Login() {
-  const classes = useStyles();
-
-  return (
-    <Grid container component="main" className={classes.root} >
-      <CssBaseline />
-      <Grid item lg={4} md={1} sm={1}/>
-      <Grid item lg={4} md={10} sm={10} xs={12} component={Paper} elevation={6} square style={{marginTop:'5vh',marginBottom:'10vh'}}>
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockRoundedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="forgotPassword" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-          </form>
+export default function SingUp() {
+    
+    const [email, setTitle] = useState("");
+    const [password, setPassword] = useState("");
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(email,password);
+        const reqBody={
+            email:email,
+            password:password
+        }
+        fetch(
+            "http://localhost:8080/user/login",
+            {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(reqBody)
+            }
+        ).then(
+            res=>res.json()
+        ).then(
+            data=>console.log(data)
+        );
+    }
+    return (
+        <div>
+            <form onSubmit={handleSubmit} style={{height:'100vh',width:'100vw', background: 'linear-gradient(135deg, #364755 50%, #182835 50%)',position:'absolute',top:'0',left:'0'}}>
+                <img src="logo.png" style={{maxWidth:'100px'}} alt='logo' />
+                <div style={{display:'inline-block',position:'absolute',marginTop:'30px',textAlign:'center',color:'#fec14e'}}>
+                    <h1> Green Basket</h1>
+                </div>
+                <div style={style}>
+                    <Grid container spacing={8} alignItems="center">
+                        <Grid item>
+                            <h1>Login</h1>
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={8} alignItems="flex-end">
+                        {/* <Grid item md={3}>Username</Grid> */}
+                        <Grid item md={12} sm={12} xs={12}>
+                            <TextField value={email} onChange={(e)=> {setTitle(e.target.value)}} id="username" margin="normal" variant="outlined" label="Username" type="text" fullWidth required />
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={8} alignItems="flex-end">
+                        {/* <Grid item md={3}>Password</Grid> */}
+                        <Grid item md={12} sm={12} xs={12}>
+                            <TextField value={password} onChange={(e)=> {setPassword(e.target.value)}}   id="password" margin="normal" variant="outlined" label="Password" type="password" fullWidth required />
+                        </Grid>
+                    </Grid>
+                    <Grid container alignItems="center" justify="space-between" style={{marginTop:'5vh'}}>
+                        <Grid item>
+                            <FormControlLabel control={
+                                <Checkbox
+                                    color="secondary"
+                                />
+                            } label="Remember me" />
+                        </Grid>
+                    </Grid>
+                    <Grid container justify="center" style={{ marginTop: '2%' }}>
+                        <Grid item md={4} fullWidth>
+                            <Button  type="submit" variant="contained" style={{ textTransform: "none", backgroundColor:"#fec14e",color:"white",minWidth:"100px",fontWeight:'bolder',fontSize:'medium',borderRadius:'5pt'}}>Login</Button>
+                            
+                        </Grid>
+                    </Grid>
+                </div>
+            </form>
         </div>
-      </Grid>
-      <Grid item lg={4} md={1}  sm={1}/>
-    </Grid>
-  );
+    );
 }
