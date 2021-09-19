@@ -39,9 +39,12 @@ export default function SingUp() {
             }
         ).then(
             res=>res.json()
+        
         ).then(
             data=>console.log(data)
-        );
+        ).catch((err) => {
+            alert("invalid Credentials")
+        });
     }
     return (
         <div>
