@@ -26,13 +26,13 @@ age: '',
 salary: '',*/
 
 @Entity
-@Table(name="users")
+@Table(name="customer")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 @ToString
-public class Admin extends BaseEntity { 
+public class Customer extends BaseEntity { 
 	@Column(length=20)
 	@JsonProperty("firstName")//appers in marshalled json data
 	private String fName;
@@ -42,6 +42,8 @@ public class Admin extends BaseEntity {
 	private String email;
 	@Column(length=20,nullable=false )
 	private String password;
+	@Column(length=20)
+	private int phone;
 	@Column(length=100)
 	private String address;
 	@Column(name="reg_date")
@@ -49,5 +51,4 @@ public class Admin extends BaseEntity {
 	private LocalDate reg_date;
 	
 }
-
 

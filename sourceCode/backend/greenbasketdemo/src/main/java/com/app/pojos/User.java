@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -44,11 +45,16 @@ public class User extends BaseEntity {
 	private String password;
 	@Column(length=100)
 	private String address;
-	@Column(name="reg_date")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private LocalDate reg_date;
 	@Enumerated(EnumType.STRING)
 	@Column(name="user_role",length = 20)	
 	private UserRole role;
+	
+	//we need to do mapping one to many
+	
+//	@OneToMany
+//	private Customer cust_id;
+//	//private Customer cust_id;
+	
+	
 }
 
