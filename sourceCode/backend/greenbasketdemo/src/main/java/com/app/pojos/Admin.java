@@ -32,7 +32,7 @@ salary: '',*/
 @Setter
 @Getter
 @ToString
-public class User extends BaseEntity { 
+public class Admin extends BaseEntity { 
 	@Column(length=20)
 	@JsonProperty("firstName")//appers in marshalled json data
 	private String fName;
@@ -47,8 +47,7 @@ public class User extends BaseEntity {
 	@Column(name="reg_date")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate reg_date;
-	@Enumerated(EnumType.STRING)
-	@Column(name="user_role",length = 20)	
-	private UserRole role;
+	
 }
+
 
