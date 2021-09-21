@@ -5,6 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import {useState} from 'react';
+import UserServiceFetch from '../../services/UserServiceFetch';
 const style = {
     maxWidth:'40%',
     minWidth:'400px',
@@ -21,8 +22,10 @@ const style = {
 
 export default function SingUp() {
     
-    const [email, setTitle] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    // console.log(email,password)
+    // const reqBody={email:email,password:password};
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email,password);
@@ -30,8 +33,23 @@ export default function SingUp() {
             email:email,
             password:password
         }
+        // function login(){
+        //     console.log(email,password)
+        //     const reqBody={email:email,password:password};
+
+        //     let result= fetch(
+        //         "http://localhost:8080/user/login",
+        //         {
+        //             method: "POST",
+        //             headers: { 'Content-Type': 'application/json' },
+        //             body: JSON.stringify(reqBody)
+        //         }
+        //     );
+        //     result= result.json();
+
+        
         fetch(
-            "http://localhost:8080/user/login",
+            "http://localhost:8080/customer/login",
             {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
@@ -41,7 +59,8 @@ export default function SingUp() {
             res=>res.json()
         
         ).then(
-            data=>console.log(data)
+            data=>{console.log(data);
+            alert("login successful")}
         ).catch((err) => {
             alert("invalid Credentials")
         });
@@ -62,7 +81,7 @@ export default function SingUp() {
                     <Grid container spacing={8} alignItems="flex-end">
                         {/* <Grid item md={3}>Username</Grid> */}
                         <Grid item md={12} sm={12} xs={12}>
-                            <TextField value={email} onChange={(e)=> {setTitle(e.target.value)}} id="username" margin="normal" variant="outlined" label="Username" type="text" fullWidth required />
+                            <TextField value={email} onChange={(e)=> {setEmail(e.target.value)}} id="username" margin="normal" variant="outlined" label="Username" type="text" fullWidth required />
                         </Grid>
                     </Grid>
                     <Grid container spacing={8} alignItems="flex-end">
@@ -82,7 +101,7 @@ export default function SingUp() {
                     </Grid>
                     <Grid container justify="center" style={{ marginTop: '2%' }}>
                         <Grid item md={4} fullWidth>
-                            <Button  type="submit" variant="contained" style={{ textTransform: "none", backgroundColor:"#fec14e",color:"white",minWidth:"100px",fontWeight:'bolder',fontSize:'medium',borderRadius:'5pt'}}>Login</Button>
+                            <Button type="submit" variant="contained" style={{ textTransform: "none", backgroundColor:"#fec14e",color:"white",minWidth:"100px",fontWeight:'bolder',fontSize:'medium',borderRadius:'5pt'}}>Login</Button>
                             
                         </Grid>
                     </Grid>
