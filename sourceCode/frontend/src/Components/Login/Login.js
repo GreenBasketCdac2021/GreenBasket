@@ -4,6 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
+
 import {useState} from 'react';
 const style = {
     maxWidth:'40%',
@@ -31,7 +33,7 @@ export default function Login() {
             password:password
         }
         fetch(
-            "http://localhost:8080/user/login",
+            "http://localhost:8080/user/admin/login",
             {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
@@ -42,7 +44,7 @@ export default function Login() {
         
         ).then(
             data=>{
-                console.log(data);
+                console.log([data]);
                 window.location.replace("http://localhost:3000");
             }
         ).catch((err) => {
@@ -83,10 +85,19 @@ export default function Login() {
                             } label="Remember me" />
                         </Grid>
                     </Grid>
+                    <Grid container-fluid>
+                        <Link href="signup">
+                                create new account
+                        </Link>
+                        <Link href="forgotPassword">
+                                forgotpassword
+                        </Link>
+                    </Grid>
                     <Grid container justify="center" style={{ marginTop: '2%' }}>
                         <Grid item md={4} fullWidth>
-                            <Button  type="submit" variant="contained" style={{ textTransform: "none", backgroundColor:"#fec14e",color:"white",minWidth:"100px",fontWeight:'bolder',fontSize:'medium',borderRadius:'5pt'}}>Login</Button>
-                            
+                            <Button  type="submit" variant="contained" style={{ textTransform: "none", backgroundColor:"#fec14e",color:"white",minWidth:"100px",fontWeight:'bolder',fontSize:'medium',borderRadius:'5pt'}}>
+                                Login
+                            </Button>
                         </Grid>
                     </Grid>
                 </div>

@@ -25,7 +25,7 @@ public class UserRestController {
 	@Autowired
 	IUserService userService;
 
-	@PostMapping("/login")
+	@PostMapping("/admin/login")
 	public ResponseEntity<?> checkUser(@RequestBody User user) {
 		User u = userService.validateUser(user);
 		if (u != null) {

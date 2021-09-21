@@ -7,7 +7,7 @@ import InfoIcon from '@material-ui/icons/Info';
 class Footer extends React.Component{
     render() {
         return(
-            <div className="fixed-bottom">  
+            <div className="fixed-bottom" >  
                 <Navbar  bg="dark" variant="dark">
                     <Container>
                         <Navbar.Brand href="/"></Navbar.Brand>

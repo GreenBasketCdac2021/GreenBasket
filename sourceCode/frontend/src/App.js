@@ -15,6 +15,7 @@ import About from './Components/Footer/About';
 import { Provider } from 'react-redux';
 import React from 'react';
 import store from './store';
+import Fruits from './Components/MainBody/Category/Fruits';
 class App extends React.Component {
   render(){
     return (
@@ -32,6 +33,10 @@ class App extends React.Component {
                 <Route path="/forgotPassword" exact component={ForgotPassword}/>
 
                 <Route path="/AdminLogin" exact component={AdminLogin}/>
+                
+
+                {/**DashBoard */}
+                <Route path="/fruits" exact component={Fruits}/>
                 
                 <Route path="/cart" exact component={Cart}/>
                 
