@@ -42,8 +42,8 @@ public class Customer extends BaseEntity {
 	private String email;
 	@Column(length=20,nullable=false )
 	private String password;
-	@Column(length=20)
-	private int phone;
+	@Column(length=50)
+	private String phone;
 	@Column(length=100)
 	private String address;
 	@Column(name="reg_date")

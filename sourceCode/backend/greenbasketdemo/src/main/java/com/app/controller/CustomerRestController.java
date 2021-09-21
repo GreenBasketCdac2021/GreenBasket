@@ -11,41 +11,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.pojos.Customer;
 import com.app.pojos.User;
+import com.app.service.ICustomerService;
 import com.app.service.IUserService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/user")
-public class UserRestController {
-	public	UserRestController(){
+@RequestMapping("/customer")
+public class CustomerRestController {
+	public	CustomerRestController(){
 		 System.out.println("in constr of "+getClass().getName());
 	}
 	 
 	@Autowired
-	IUserService userService;
+	ICustomerService customerService;
 	
 	@PostMapping("/login")
-	public ResponseEntity<?> checkUser(@RequestBody User user){
-		User u=userService.validateUser(user);
+	public ResponseEntity<?> checkUser(@RequestBody Customer customer){
+		Customer u=customerService.validateCustomer(customer);
 		if(u!=null) {
-			return new ResponseEntity<User>(u,HttpStatus.OK);
+			return new ResponseEntity<Customer>(u,HttpStatus.OK);
 		}else {
 			return new ResponseEntity<String>("{invalid credentials}",HttpStatus.OK);
 		}
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<?> registerNewUser(@RequestBody User user){
-		String tempEmaiId = user.getEmail(); 
-		if (tempEmaiId != null && !"".equals(tempEmaiId)) { 
-			User obj = userService.fetchUserByEmailId(tempEmaiId);
+	public ResponseEntity<?> registerNewUser(@RequestBody Customer customer){
+		String tempEmailId = customer.getEmail(); 
+		if (tempEmailId != null && !"".equals(tempEmailId)) { 
+			Customer obj = customerService.fetchCustomerByEmailId(tempEmailId);
 			if(obj != null) { 
-				return new ResponseEntity<String>("User with emailId" + tempEmaiId +" already exist",HttpStatus.OK); 
+				return new ResponseEntity<String>("User with emailId" + tempEmailId +" already exist",HttpStatus.OK); 
 				} 
 			} 
-		User tempUser = null; 
-		tempUser =userService.registerUser(user);
+		Customer tempUser = null; 
+		tempUser =customerService.registerCustomer(customer);
 			  return new ResponseEntity<String>("user created successfully",HttpStatus.OK);
 			 }	
 	}
