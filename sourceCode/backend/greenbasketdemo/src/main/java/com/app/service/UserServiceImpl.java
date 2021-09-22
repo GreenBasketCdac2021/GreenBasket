@@ -74,6 +74,11 @@ public class UserServiceImpl implements IUserService {
 		}
 		
 		@Override
+		public List<ProductDetails> fetchAllProducts() {
+			return productRepo.findAll();
+		}
+		
+		@Override
 		public ProductDetails addNewProduct(ProductDetails product) {
 			return productRepo.save(product);
 		}
@@ -97,6 +102,8 @@ public class UserServiceImpl implements IUserService {
 	 * @Override public User updateUserDetails(User detachedUser) { //edit and
 	 * update user details return userRepo.save(detachedUser); }
 	 */
+
+		
 
 		
 }
