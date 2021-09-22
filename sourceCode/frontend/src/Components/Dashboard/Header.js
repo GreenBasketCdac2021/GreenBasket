@@ -32,7 +32,7 @@ class Header extends React.Component{
                 <Container>
                         <Navbar.Brand href="/">
                             <img src="logo.png" style={{maxWidth:'50px'}} alt='logo' />
-                            <div style={{display:'inline-block',position:'absolute',top:'15px',textAlign:'center',color:'#fec14e'}}>
+                            <div style={{display:'inline-block',position:'absolute',align:'center',textAlign:'center',color:'#fec14e'}}>
                                 <h1> Green Basket</h1>
                             </div>    
                         </Navbar.Brand>

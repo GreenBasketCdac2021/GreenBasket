@@ -33,7 +33,8 @@ public class UserRestController {
 	@Autowired
 	ICustomerService customerService;
 
-	@PostMapping("/login")
+
+	@PostMapping("/admin/login")
 
 	public ResponseEntity<?> checkUser(@RequestBody User user) {
 		User u = userService.validateUser(user);
