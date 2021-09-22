@@ -2,6 +2,7 @@ package com.app.service;
 
 import java.util.List;
 
+import com.app.pojos.Category;
 import com.app.pojos.Customer;
 import com.app.pojos.ProductDetails;
 import com.app.pojos.User;
@@ -27,6 +28,8 @@ public interface IUserService {
 	
 	// method to add new product
 	ProductDetails addNewProduct(ProductDetails product);
+	
+	
 	
 	
 	

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.pojos.Category;
 import com.app.pojos.Customer;
 import com.app.pojos.ProductDetails;
 import com.app.pojos.User;
@@ -79,4 +80,6 @@ public class UserRestController {
 	public ResponseEntity<?> addProduct(@RequestBody ProductDetails product){
 		return new ResponseEntity<>(userService.addNewProduct(product),HttpStatus.CREATED);
 	}
+	
+	
 }

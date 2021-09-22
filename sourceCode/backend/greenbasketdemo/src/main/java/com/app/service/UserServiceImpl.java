@@ -16,6 +16,7 @@ import com.app.dao.CustomerRepository;
 import com.app.dao.ProductRepository;
 //import com.app.custom_exceptions.UserHandlingException;
 import com.app.dao.UserRepository;
+import com.app.pojos.Category;
 import com.app.pojos.Customer;
 import com.app.pojos.ProductDetails;
 import com.app.pojos.User;
@@ -102,6 +103,8 @@ public class UserServiceImpl implements IUserService {
 	 * @Override public User updateUserDetails(User detachedUser) { //edit and
 	 * update user details return userRepo.save(detachedUser); }
 	 */
+
+	
 
 		
 
