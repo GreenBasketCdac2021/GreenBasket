@@ -6,7 +6,7 @@ class Category extends React.Component{
     render(){
         return (
             <Grid md ={4}>
-                <Card style={{  marginTop:'10px',marginLeft:"5vw",  alignItems: "center",justifyContent: "center",background:"#aaa"}} >
+                <Card style={{  marginTop:'10px',marginRight:"5vw",  alignItems: "center",justifyContent: "center",background:"#aaa"}} >
                     <Card.Img variant="top" src={this.props.imgSrc}  style={{width:"70%",height:'18vh',marginTop:"20px"}} alt={this.props.title}/>
                     <Card.Body>
                         <Card.Title><h2>{this.props.title}</h2></Card.Title>
