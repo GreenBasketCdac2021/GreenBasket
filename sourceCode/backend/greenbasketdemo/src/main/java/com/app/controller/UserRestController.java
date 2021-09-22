@@ -70,7 +70,12 @@ public class UserRestController {
 		return ResponseEntity.ok(userService.getCustomerById(customerId));
 	}
 	
-	@PostMapping
+	@GetMapping("/product")
+	public List<ProductDetails> getAllProducts(){
+		return userService.fetchAllProducts();
+	}
+	
+	@PostMapping("/product")
 	public ResponseEntity<?> addProduct(@RequestBody ProductDetails product){
 		return new ResponseEntity<>(userService.addNewProduct(product),HttpStatus.CREATED);
 	}

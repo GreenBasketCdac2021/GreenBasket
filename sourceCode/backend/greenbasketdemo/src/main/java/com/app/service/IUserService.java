@@ -22,6 +22,9 @@ public interface IUserService {
 	// method to get customer by Id
 	Customer getCustomerById(int customerId);
 	
+	// method to fetch all products
+	List<ProductDetails> fetchAllProducts();
+	
 	// method to add new product
 	ProductDetails addNewProduct(ProductDetails product);
 	
