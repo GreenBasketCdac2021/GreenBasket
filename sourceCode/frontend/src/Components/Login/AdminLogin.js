@@ -54,7 +54,8 @@ const style = {
             
             ).then(
                 data=>{console.log(data);
-                alert("login successful")}
+                alert("login successful");
+                window.location.replace("http://localhost:3000")}
             ).catch((err) => {
                 alert("invalid Credentials")
             });

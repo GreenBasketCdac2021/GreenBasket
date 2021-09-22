@@ -1,9 +1,12 @@
 package com.app.pojos;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -21,8 +24,12 @@ import lombok.ToString;
 @ToString
 public class Category extends BaseEntity{
 	
-	@Enumerated(EnumType.STRING)
+	
 	@Column(name="Category",length = 20)
-	private Categories categoryName;
+	private String categoryName;
+	
+	//mapping
+		@OneToMany(mappedBy="category",cascade = CascadeType.ALL, orphanRemoval = true)
+		private Set<ProductDetails> productDetails = new HashSet<>();
 
 }

@@ -12,36 +12,41 @@ import Cart from './Components/Cart/Cart';
 
 import Contact from './Components/Footer/Contact';
 import About from './Components/Footer/About';
+import { Provider } from 'react-redux';
+import React from 'react';
+import store from './store';
+class App extends React.Component {
+  render(){
+    return (
+      <Provider store={store}>
+        <div>
+          <Title pageTitle="Green Basket"/>
+          <Router>
+            <Switch>
+                <Route path="/" exact component={Dashboard}/>
+                
+                
+                {/*login*/} 
+                <Route path="/login" exact component={Login}/>
+                <Route path="/signup" exact component={Signup}/>
+                <Route path="/forgotPassword" exact component={ForgotPassword}/>
 
-function App() {
-  return (
-    <div>
-      <Title pageTitle="Green Basket"/>
-      <Router>
-        <Switch>
-            <Route path="/" exact component={Dashboard}/>
-            
-            
-            {/*login*/} 
-            <Route path="/login" exact component={Login}/>
-            <Route path="/signup" exact component={Signup}/>
-            <Route path="/forgotPassword" exact component={ForgotPassword}/>
-
-            <Route path="/AdminLogin" exact component={AdminLogin}/>
-            
-            <Route path="/cart" exact component={Cart}/>
-            
-            {/**contact */}
-            <Route path="/contact" exact component={Contact}/>
-            
-            {/**about */}
-            <Route path="/about" exact component={About}/>
-            
-          </Switch>
-      </Router>
-      
-    </div>
-  );
+                <Route path="/AdminLogin" exact component={AdminLogin}/>
+                
+                <Route path="/cart" exact component={Cart}/>
+                
+                {/**contact */}
+                <Route path="/contact" exact component={Contact}/>
+                
+                {/**about */}
+                <Route path="/about" exact component={About}/>
+                
+              </Switch>
+          </Router>
+        </div>
+      </Provider>
+    );
+  }
 }
 
 export default App;

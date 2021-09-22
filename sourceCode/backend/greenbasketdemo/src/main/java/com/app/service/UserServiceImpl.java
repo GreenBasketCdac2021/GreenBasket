@@ -1,5 +1,6 @@
 package com.app.service;
 
+import java.util.List;
 //import java.util.List;
 import java.util.Optional;
 
@@ -10,8 +11,13 @@ import org.springframework.data.domain.Example;
 //import org.springframework.data.repository.query.QueryByExampleExecutor;
 import org.springframework.stereotype.Service;
 
+import com.app.custom_exceptions.UserHandlingException;
+import com.app.dao.CustomerRepository;
+import com.app.dao.ProductRepository;
 //import com.app.custom_exceptions.UserHandlingException;
 import com.app.dao.UserRepository;
+import com.app.pojos.Customer;
+import com.app.pojos.ProductDetails;
 import com.app.pojos.User;
 
 @Service
@@ -20,10 +26,17 @@ public class UserServiceImpl implements IUserService {
 	// dependency of Dao layer
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private CustomerRepository customerRepo;
+	
+	@Autowired
+	private ProductRepository productRepo;
+	
+	
 
 	@Override
 	public User validateUser(User user) {
-		// TODO Auto-generated method stub
 		User u = new User();
 		u.setEmail(user.getEmail());
 		u.setPassword(user.getPassword());
@@ -41,17 +54,29 @@ public class UserServiceImpl implements IUserService {
 	public User registerUser(User user) {
 		return userRepo.save(user);
 		}
-		/*
-		 * String tempEmaiId = user.getEmail(); if (tempEmaiId != null &&
-		 * !"".equals(tempEmaiId)) { User obj = userRepo.findByEmail(tempEmaiId); if
-		 * (obj != null) { throw new Exception("User with emailId" + tempEmaiId +
-		 * " already exist"); } } User tempUser = null; tempUser = userRepo.save(user);
-		 * return tempUser; }
-		 */
-		  public User fetchUserByEmailId(String emailId) { 
-			  return userRepo.findByEmail(emailId);
+		
+	public User fetchUserByEmailId(String emailId) { 
+		return userRepo.findByEmail(emailId);
 		 }
 
+	// CRUD Operations performed by admin 
+	
+	// method to fetch list of all customers
+		@Override
+		public List<Customer> fetchAllCustomers() {
+			return customerRepo.findAll();
+		}
+		
+		// method to get customer by Id
+		@Override
+		public Customer getCustomerById(int customerId) { 
+			return customerRepo.findById(customerId).orElseThrow(() ->new UserHandlingException("Invalid Customer Id"));
+		}
+		
+		@Override
+		public ProductDetails addNewProduct(ProductDetails product) {
+			return productRepo.save(product);
+		}
 	/*
 	 * @Override public List<User> fetchAllUsers() {
 	 * 
@@ -72,4 +97,6 @@ public class UserServiceImpl implements IUserService {
 	 * @Override public User updateUserDetails(User detachedUser) { //edit and
 	 * update user details return userRepo.save(detachedUser); }
 	 */
+
+		
 }
