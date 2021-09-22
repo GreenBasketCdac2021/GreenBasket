@@ -1,16 +1,10 @@
 package com.app.pojos;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -47,11 +41,15 @@ public class ProductDetails  extends BaseEntity{
 	@Column(name="product_description",length=100)
 	private String productDescription;
 	
-	//mapping
-	//@JsonIgnoreProperties("Category")
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name="category_id", nullable=false) // to specify FK column
-	private Category categoryName;
+	@Enumerated(EnumType.STRING)
+	@Column(name="categoryType",length = 20)	
+	private Category categoryType;
+	
+//	//mapping
+//	//@JsonIgnoreProperties("Category")
+//	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//	@JoinColumn(name="category_id", nullable=false) // to specify FK column
+//	private Category categoryName;
 
 	/*
 	 * public ProductDetails() { super(); }
