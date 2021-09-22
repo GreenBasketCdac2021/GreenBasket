@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -79,6 +81,23 @@ public class UserRestController {
 	@PostMapping("/product")
 	public ResponseEntity<?> addProduct(@RequestBody ProductDetails product){
 		return new ResponseEntity<>(userService.addNewProduct(product),HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/product/{productId}")
+	public ResponseEntity<ProductDetails> getProductById(@PathVariable int productId){
+		return ResponseEntity.ok(userService.getProductById(productId));
+	}
+	
+	@PutMapping("/updateProduct/{pId}")
+	public ResponseEntity<?> updateProduct(@RequestBody ProductDetails product, @PathVariable int pId) {
+		ProductDetails existingProduct = userService.getProductById(pId);
+		return ResponseEntity.ok(userService.updateProduct(product));
+	}
+	
+	@DeleteMapping("/deleteProduct/{ppid}")
+	public ResponseEntity<?> deleteProductById(@PathVariable int ppid){
+		return ResponseEntity.ok(userService.deleteProductById(ppid));
+		
 	}
 	
 	

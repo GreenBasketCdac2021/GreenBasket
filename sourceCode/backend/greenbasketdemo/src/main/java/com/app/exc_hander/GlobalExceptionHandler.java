@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.app.custom_exceptions.ProductHandlingException;
 import com.app.custom_exceptions.UserHandlingException;
 import com.app.dto.ErrorResponse;
+
+
+
 
 @ControllerAdvice //maNDATORY : to tell spring container following class contains the centralized exception hndler mthds
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -36,6 +40,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<?> handleUserHandlingException(UserHandlingException e){
 		System.out.println("in handle userhandle exception"+e);
 		ErrorResponse resp=new ErrorResponse(e.getMessage(),LocalDateTime.now());
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resp);
+	}
+	
+	@ExceptionHandler(ProductHandlingException.class)
+	public ResponseEntity<?> handleProductHandlingException(ProductHandlingException e)
+	{
+		System.out.println("in handle product exc "+e);
+		ErrorResponse resp = new ErrorResponse(e.getMessage(),LocalDateTime .now());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resp);
 	}
 	

@@ -16,18 +16,34 @@ public interface IUserService {
 
 	public User fetchUserByEmailId(String tempEmaiId);
 
-	
+//----------------------------------------------------------------------------------------------------//
+	//doing all bt admin
 	 //method to fetch- list all customers 
 	List<Customer> fetchAllCustomers();
 
 	// method to get customer by Id
 	Customer getCustomerById(int customerId);
 	
+//-----------------------------------------------------------------------------------------------------------//
+	
 	// method to fetch all products
 	List<ProductDetails> fetchAllProducts();
 	
 	// method to add new product
 	ProductDetails addNewProduct(ProductDetails product);
+		
+		//add method to get by id
+		ProductDetails getProductById(int productId);
+		
+	
+	//method to add update product by id
+	ProductDetails updateProduct(ProductDetails product);
+	
+	//method to delete product by id
+	String deleteProductById(int productId);
+	
+	//add a method to list all category
+	List<User> getProductByCategory(String categoryName);
 	
 	
 	

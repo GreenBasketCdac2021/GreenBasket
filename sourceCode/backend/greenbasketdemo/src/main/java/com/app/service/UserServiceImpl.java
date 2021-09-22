@@ -11,6 +11,7 @@ import org.springframework.data.domain.Example;
 //import org.springframework.data.repository.query.QueryByExampleExecutor;
 import org.springframework.stereotype.Service;
 
+import com.app.custom_exceptions.ProductHandlingException;
 import com.app.custom_exceptions.UserHandlingException;
 import com.app.dao.CustomerRepository;
 import com.app.dao.ProductRepository;
@@ -103,10 +104,34 @@ public class UserServiceImpl implements IUserService {
 	 * @Override public User updateUserDetails(User detachedUser) { //edit and
 	 * update user details return userRepo.save(detachedUser); }
 	 */
-
-	
-
+		
+		@Override
+		public ProductDetails getProductById(int productId) {
+			
+			return productRepo.findById(productId).orElseThrow(() ->new ProductHandlingException("Invalid product Id"));
+		}
+		
+		@Override
+		public ProductDetails updateProduct(ProductDetails product) {
+			// TODO Auto-generated method stub
+			return productRepo.save(product);
+		}
+		
 		
 
+		@Override
+		public String deleteProductById(int productId) {
+			
+			productRepo.deleteById(productId);
+			return "Product deleted succesfully";
+		}
 		
+		@Override
+		public List<User> getProductByCategory(String categoryName) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		
+				
 }
