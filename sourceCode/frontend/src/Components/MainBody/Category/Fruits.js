@@ -3,6 +3,8 @@ import Header from '../../Dashboard/Header';
 import Footer from '../../Dashboard/Footer';
 import SingleFruit from './SingleFruit';
 
+import Grid from '@material-ui/core/Grid';
+
 var fruitsArray=[
     {name:"Apple",quntity:"1KG",price:"100Rs."},
     
@@ -18,8 +20,9 @@ class Fruits extends React.Component{
         return(
             <>
                 <Header/>
-                    {fruitsArray.map((singleFruitObject, index) =>  <SingleFruit key={index} name={singleFruitObject.name} quntity={singleFruitObject.quntity} price={singleFruitObject.price}/>)
-                }
+                <Grid  container alignItems="flex-end" style={{marginTop:'20px'}} spacing={2}>
+                    {fruitsArray.map((singleFruitObject, index) =>  <SingleFruit key={index} name={singleFruitObject.name} quntity={singleFruitObject.quntity} price={singleFruitObject.price}/>)}
+                </Grid>
                 <Footer/>
             </>
         );

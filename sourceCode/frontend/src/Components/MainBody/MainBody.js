@@ -22,16 +22,9 @@ class MainBody extends React.Component{
                     <center><img src={Photo} style={{width:'40vw'}} alt="fruit"/></center>
                 </div>
                 <Grid container alignItems="flex-end" style={{marginTop:'20px'}}>
-                    
-                    <Grid item md={4}>
-                        <Category title={category.fruit.title} imgSrc={Fruits} text={category.fruit.text} link={category.fruit.link}/>
-                    </Grid>
-                    <Grid item md={4}>
-                        <Category title={category.vegetables.title} imgSrc={Vegetable} text={category.vegetables.text} link={category.vegetables.link}/>
-                    </Grid>
-                    <Grid item md={4}>
-                        <Category title={category.sprouts.title} imgSrc={Sprouts} text={category.sprouts.text} link={category.sprouts.link}/>
-                    </Grid>
+                    <Category title={category.fruit.title} imgSrc={Fruits} text={category.fruit.text} link={category.fruit.link}/>
+                    <Category title={category.vegetables.title} imgSrc={Vegetable} text={category.vegetables.text} link={category.vegetables.link}/>
+                    <Category title={category.sprouts.title} imgSrc={Sprouts} text={category.sprouts.text} link={category.sprouts.link}/>
                 </Grid>
                 <br/>
                 <br/>
