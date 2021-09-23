@@ -14,13 +14,16 @@ class Header extends React.Component{
     }
     render(){
         let LoginUser;
+        let AdminLogin;
         if(this.state.auth){
+            AdminLogin=<></>;
             LoginUser=<Nav.Link>
                         <AccountCircleIcon/>
                         {this.state.userName}
             </Nav.Link>;
         }
         else{
+            AdminLogin=<Nav.Link href="AdminLogin"><LockIcon/>Admin Login</Nav.Link>;
             LoginUser=<>
                         <Nav.Link href="login">
                             <LockIcon/>Login  
@@ -41,7 +44,7 @@ class Header extends React.Component{
                             <Nav className="me-auto"/>
                             
                             <Nav>
-                                <Nav.Link href="AdminLogin"><LockIcon/>Admin Login</Nav.Link>
+                                {AdminLogin}
                                 {LoginUser}
                                 <Nav.Link href="cart"><ShoppingCartIcon/>cart</Nav.Link>
                             </Nav>

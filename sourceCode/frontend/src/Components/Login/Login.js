@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 
 import {useState} from 'react';
-import UserServiceFetch from '../../services/UserServiceFetch';
+//import UserServiceFetch from '../../services/UserServiceFetch';
 const style = {
     maxWidth:'40%',
     minWidth:'400px',
@@ -35,20 +35,6 @@ export default function Login() {
             email:email,
             password:password
         }
-        // function login(){
-        //     console.log(email,password)
-        //     const reqBody={email:email,password:password};
-
-        //     let result= fetch(
-        //         "http://localhost:8080/user/login",
-        //         {
-        //             method: "POST",
-        //             headers: { 'Content-Type': 'application/json' },
-        //             body: JSON.stringify(reqBody)
-        //         }
-        //     );
-        //     result= result.json();
-
         
         fetch(
             "http://localhost:8080/customer/login",
