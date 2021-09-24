@@ -43,7 +43,7 @@ class Login extends React.Component {
         }
         
         //this.props.checkLogin();
-        axios.get("http://localhost:8080/customer/login",reqBody)
+        axios.post("http://localhost:8080/customer/login",reqBody)
         .then(auth=>console.log(auth))
         .catch((err) => {
             alert("invalid Credentials")
@@ -66,7 +66,7 @@ class Login extends React.Component {
                     <Grid container spacing={8} alignItems="flex-end">
                         {/* <Grid item md={3}>Username</Grid> */}
                         <Grid item md={12} sm={12} xs={12}>
-                            <TextField  onChange={this.onChange} id="username" margin="normal" variant="outlined" label="Username" type="text" fullWidth required />
+                            <TextField  onChange={this.onChange} id="email" margin="normal" variant="outlined" label="email" type="text" fullWidth required />
                         </Grid>
                     </Grid>
                     <Grid container spacing={8} alignItems="flex-end">
