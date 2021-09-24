@@ -1,17 +1,18 @@
-//import { FETCH_POSTS,NEW_POST } from "../actions/types";
+import { FETCH_PRODUCTS/*,NEW_POST*/  } from "../actions/types";
 
 const initialState={
-    items:[],
-    item:{}
+    auth:{},
+    products:[],
+    product:{}
 }
 export default function postReducer(state= initialState,action){
     switch(action.type){
-        case 'FETCH_POSTS':
+        case FETCH_PRODUCTS:
             return {
                 ...state,
-                items: action.payload
+                products: action.payload
             }
-        //case 'NEW_POST':
+        //case NEW_POST:
         default:
             return state;
     }

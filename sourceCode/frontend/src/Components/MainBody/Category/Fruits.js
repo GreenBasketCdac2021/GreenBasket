@@ -2,30 +2,38 @@ import React from 'react';
 import Header from '../../Dashboard/Header';
 import Footer from '../../Dashboard/Footer';
 import SingleFruit from './SingleFruit';
-
 import Grid from '@material-ui/core/Grid';
+import {connect} from 'react-redux';
+import {fetchProducts} from '../../../actions/postActions'
 
-var fruitsArray=[
-    {name:"Apple",quntity:"1KG",price:"100Rs."},
-    
-    {name:"Mango",quntity:"1KG",price:"200Rs."},
-    
-    {name:"WaterMelon",quntity:"1KG",price:"20Rs."},
-    
-    {name:"Ornange",quntity:"1KG",price:"50Rs."}
-];
 class Fruits extends React.Component{
+    componentDidMount(){
+        this.props.fetchProducts();
+    }
+
     render(){
-        
         return(
             <>
                 <Header/>
-                <Grid  container alignItems="flex-end" style={{marginTop:'20px'}} spacing={2}>
-                    {fruitsArray.map((singleFruitObject, index) =>  <SingleFruit key={index} name={singleFruitObject.name} quntity={singleFruitObject.quntity} price={singleFruitObject.price}/>)}
-                </Grid>
+                    <Grid  container style={{marginTop:'20px',marginLeft:'5vw',marginRight:'5vw',maxWidth:"90vw"}} spacing={3} >
+                    {console.log(this.props.products)}
+                    {
+                        this.props.products.map(
+                            (singleFruitObject, index) =>  
+                                <SingleFruit key={index} 
+                                    object={singleFruitObject} 
+                                    spacing={2}
+                                    type="FRUITS"
+                                />
+                        )
+                    }
+                    </Grid>
                 <Footer/>
             </>
         );
     }
 }
-export default Fruits;
+const mapStateToProps =state=>({
+    products:state.postsProducts.products
+})
+export default connect(mapStateToProps,{fetchProducts})(Fruits);

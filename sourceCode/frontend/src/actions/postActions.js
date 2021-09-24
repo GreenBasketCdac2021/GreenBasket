@@ -1,5 +1,13 @@
-import { FETCH_POSTS,NEW_POST } from "./types";
+import { FETCH_PRODUCTS/*,NEW_POST*/ } from "./types";
 
-export const fetchPosts=()=>dispatch=>{
-
+export const fetchProducts=()=>dispatch=>{
+    fetch("http://localhost:8080/user/product")
+        .then((response) => response.json())
+        .then((responseJson) => dispatch({
+            type:FETCH_PRODUCTS,
+            payload:responseJson
+        }))
+        .catch((error) => {
+            console.error(error);
+        })
 }
