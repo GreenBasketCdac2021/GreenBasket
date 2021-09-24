@@ -3,5 +3,5 @@ import postReducer from './postReducer';
 
 
 export default combineReducers({
-    postsProducts:postReducer
+    reduxStore:postReducer
 });

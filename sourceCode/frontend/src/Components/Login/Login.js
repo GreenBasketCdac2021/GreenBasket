@@ -5,16 +5,16 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-
-import {useState} from 'react';
-//import UserServiceFetch from '../../services/UserServiceFetch';
+import {checkLogin} from '../../actions/postActions';
+import {connect} from 'react-redux';
+//import PropTyes from 'prop-types';
+import axios from 'axios';
 const style = {
     maxWidth:'40%',
     minWidth:'400px',
     padding:'30px' ,
     margin:'auto',
     marginTop:"5vh",
-    // backgroundColor:'#4c5f7a',
     backgroundColor:'white',
     color:'black',
     textAlign:'center',
@@ -22,46 +22,37 @@ const style = {
     fontWeight:'bold'
 };
 
-export default function Login() {
-    
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    // console.log(email,password)
-    // const reqBody={email:email,password:password};
-    const handleSubmit = (e) => {
+class Login extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={
+            email:'',
+            password:''
+        };
+        this.onChange=this.onChange.bind(this);
+        this.onSubmit=this.onSubmit.bind(this);
+    }
+    onChange(e){
+        this.setState({[e.target.name]:e.target.value});
+    }
+    onSubmit(e){
         e.preventDefault();
-        console.log(email,password);
         const reqBody={
-            email:email,
-            password:password
+            email:this.state.email,
+            password:this.state.password
         }
         
-        fetch(
-            "http://localhost:8080/customer/login",
-
-            {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(reqBody)
-            }
-        ).then(
-            res=>res.json()
-        
-        ).then(
-
-            data=>{
-                console.log(data);
-                alert("login successful");
-                window.location.replace("http://localhost:3000")
-                }
-            
-        ).catch((err) => {
+        //this.props.checkLogin();
+        axios.get("http://localhost:8080/customer/login",reqBody)
+        .then(auth=>console.log(auth))
+        .catch((err) => {
             alert("invalid Credentials")
-        });
+        })
     }
+    render(){
     return (
         <div>
-            <form onSubmit={handleSubmit} style={{height:'100vh',width:'100vw', background: 'linear-gradient(135deg, #364755 50%, #182835 50%)',position:'absolute',top:'0',left:'0'}}>
+            <form onSubmit={this.onSubmit} style={{height:'100vh',width:'100vw', background: 'linear-gradient(135deg, #364755 50%, #182835 50%)',position:'absolute',top:'0',left:'0'}}>
                 <img src="logo.png" style={{maxWidth:'100px'}} alt='logo' />
                 <div style={{display:'inline-block',position:'absolute',marginTop:'30px',textAlign:'center',color:'#fec14e'}}>
                     <h1> Green Basket</h1>
@@ -75,16 +66,16 @@ export default function Login() {
                     <Grid container spacing={8} alignItems="flex-end">
                         {/* <Grid item md={3}>Username</Grid> */}
                         <Grid item md={12} sm={12} xs={12}>
-                            <TextField value={email} onChange={(e)=> {setEmail(e.target.value)}} id="username" margin="normal" variant="outlined" label="Username" type="text" fullWidth required />
+                            <TextField  onChange={this.onChange} id="username" margin="normal" variant="outlined" label="Username" type="text" fullWidth required />
                         </Grid>
                     </Grid>
                     <Grid container spacing={8} alignItems="flex-end">
                         {/* <Grid item md={3}>Password</Grid> */}
                         <Grid item md={12} sm={12} xs={12}>
-                            <TextField value={password} onChange={(e)=> {setPassword(e.target.value)}}   id="password" margin="normal" variant="outlined" label="Password" type="password" fullWidth required />
+                            <TextField  onChange={this.onChange}   id="password" margin="normal" variant="outlined" label="Password" type="password" fullWidth required />
                         </Grid>
                     </Grid>
-                    <Grid container alignItems="center" justify="space-between" style={{marginTop:'5vh'}}>
+                    <Grid container style={{marginTop:'5vh'}}>
                         <Grid item>
                             <FormControlLabel control={
                                 <Checkbox
@@ -93,18 +84,22 @@ export default function Login() {
                             } label="Remember me" />
                         </Grid>
                     </Grid>
-                    <Grid container-fluid>
-                        <Link href="signup">
-                                create new account
-                        </Link>
-                        <Link href="forgotPassword">
-                                forgotpassword
-                        </Link>
+                    <Grid>
+                        <Grid item >
+                            <Link href="signup">
+                                    create new account
+                            </Link>
+                        </Grid>
+                        <Grid item>
+                            <Link href="forgotPassword">
+                                    forgotpassword
+                            </Link>
+                        </Grid>
                     </Grid>
-                    <Grid container justify="center" style={{ marginTop: '2%' }}>
-                        <Grid item md={4} fullWidth>
+                    <Grid container justifyContent="center" style={{ marginTop: '2%' }}>
+                        <Grid item md={4}>
 
-                            <Button  type="submit" variant="contained" style={{ textTransform: "none", backgroundColor:"#fec14e",color:"white",minWidth:"100px",fontWeight:'bolder',fontSize:'medium',borderRadius:'5pt'}}>
+                            <Button  onSubmit={this.state.onSubmit} type="submit" variant="contained" style={{ textTransform: "none", backgroundColor:"#fec14e",color:"white",minWidth:"100px",fontWeight:'bolder',fontSize:'medium',borderRadius:'5pt'}}>
                                 Login
                             </Button>
                         </Grid>
@@ -113,4 +108,9 @@ export default function Login() {
             </form>
         </div>
     );
+    }
 }
+const mapStateToProps =state=>({
+    auth:state.reduxStore.auth
+})
+export default connect(mapStateToProps,{checkLogin})(Login);

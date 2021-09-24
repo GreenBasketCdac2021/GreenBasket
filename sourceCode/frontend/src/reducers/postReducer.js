@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS/*,NEW_POST*/  } from "../actions/types";
+import { FETCH_PRODUCTS/*,NEW_POST*/,LOGIN_AUTH  } from "../actions/types";
 
 const initialState={
     auth:{},
@@ -13,6 +13,11 @@ export default function postReducer(state= initialState,action){
                 products: action.payload
             }
         //case NEW_POST:
+        case LOGIN_AUTH:
+            return{
+                ...state,
+                auth:action.auth
+            }
         default:
             return state;
     }

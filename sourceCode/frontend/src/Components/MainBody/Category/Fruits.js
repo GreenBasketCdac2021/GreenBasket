@@ -16,7 +16,7 @@ class Fruits extends React.Component{
             <>
                 <Header/>
                     <Grid  container style={{marginTop:'20px',marginLeft:'5vw',marginRight:'5vw',maxWidth:"90vw"}} spacing={3} >
-                    {console.log(this.props.products)}
+                    {console.log(this.props)}
                     {
                         this.props.products.map(
                             (singleFruitObject, index) =>  
@@ -34,6 +34,6 @@ class Fruits extends React.Component{
     }
 }
 const mapStateToProps =state=>({
-    products:state.postsProducts.products
+    products:state.reduxStore.products
 })
 export default connect(mapStateToProps,{fetchProducts})(Fruits);
