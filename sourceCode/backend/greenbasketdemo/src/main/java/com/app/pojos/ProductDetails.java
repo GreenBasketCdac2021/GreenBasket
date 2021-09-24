@@ -35,8 +35,8 @@ public class ProductDetails extends BaseEntity {
 	private String productDescription;
 
 	// mapping
-	@JsonIgnoreProperties("productDetails") //added by Madhura
-	@ManyToOne// Removed by Madhura(fetch = FetchType.EAGER/* , cascade = CascadeType.ALL */)
+	@JsonIgnoreProperties("productDetails") 
+	@ManyToOne
 	@JoinColumn(name = "category_id") // to specify FK column
 	private Category categoryName;
 

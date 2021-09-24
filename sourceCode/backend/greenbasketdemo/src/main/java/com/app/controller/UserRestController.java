@@ -63,13 +63,13 @@ public class UserRestController {
 		return new ResponseEntity<String>("user created successfully", HttpStatus.OK);
 	}
 	
-	@GetMapping
+	@GetMapping("/customer")
 	public List<Customer> getAllCustomers(){
 		return userService.fetchAllCustomers();
 	}
 	
-	@GetMapping("/{customerId}")
-	public ResponseEntity<Customer> getCustomerById(@PathVariable int customerId){
+	@GetMapping("/customer/{customerId}")
+	public ResponseEntity<Customer> getCustomerById(@PathVariable long customerId){
 		return ResponseEntity.ok(userService.getCustomerById(customerId));
 	}
 	
@@ -84,18 +84,18 @@ public class UserRestController {
 	}
 	
 	@GetMapping("/product/{productId}")
-	public ResponseEntity<ProductDetails> getProductById(@PathVariable int productId){
+	public ResponseEntity<ProductDetails> getProductById(@PathVariable long productId){
 		return ResponseEntity.ok(userService.getProductById(productId));
 	}
 	
-	@PutMapping("/updateProduct/{pId}")
-	public ResponseEntity<?> updateProduct(@RequestBody ProductDetails product, @PathVariable int pId) {
-		ProductDetails existingProduct = userService.getProductById(pId);
+	@PutMapping("/updateProduct")
+	public ResponseEntity<?> updateProduct(@RequestBody ProductDetails product) {
+		//ProductDetails existingProduct = userService.getProductById(pId);
 		return ResponseEntity.ok(userService.updateProduct(product));
 	}
 	
 	@DeleteMapping("/deleteProduct/{ppid}")
-	public ResponseEntity<?> deleteProductById(@PathVariable int ppid){
+	public ResponseEntity<?> deleteProductById(@PathVariable long ppid){
 		return ResponseEntity.ok(userService.deleteProductById(ppid));
 		
 	}

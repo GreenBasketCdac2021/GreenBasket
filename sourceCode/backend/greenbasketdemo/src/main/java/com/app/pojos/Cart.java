@@ -1,6 +1,5 @@
 package com.app.pojos;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,38 +31,38 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name="orders")
+@Table(name="cart")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 @ToString
-public class Orders extends BaseEntity {
-	@Column(name="order_date")
+public class Cart extends BaseEntity {
+	@Column(name="timeStamp")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private LocalDate orderDate;
+	private LocalDateTime orderDate;
 	
-	private double totalAmount;
+	//private double totalAmount;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(name="PaymentMethod",length = 20)	
-	private PaymentMethod pay_method;
+//	@Enumerated(EnumType.STRING)
+//	@Column(name="PaymentMethod",length = 20)	
+//	private PaymentMethod pay_method;
 	
-    @Enumerated(EnumType.STRING)
-	@Column(name="OrderStatus",length = 20)
-     private OrderStatus status;
-
+//	@Enumerated(EnumType.STRING)
+//	@Column(name="OrderStatus",length = 20)	
+//	private OrderStatus status;
+//	
 	
 	//many to one mapping to join customer table
-	//@JsonIgnoreProperties("orders")
+	@JsonIgnoreProperties("cart")
 	@OneToOne
-	@JoinColumn(name="cart_id")
-	private Cart cart;
+	@JoinColumn(name="customer_id")
+	private Customer customerDetails;
 	
 	//many to one mapping to join customer table
-//	@JsonIgnoreProperties("cart")
-//		@OneToMany(mappedBy="cart",cascade = CascadeType.ALL, orphanRemoval = true)
-//		private List<CartItems> cartItems;
+	@JsonIgnoreProperties("cart")
+		@OneToMany(mappedBy="cart",cascade = CascadeType.ALL, orphanRemoval = true)
+		private List<CartItems> cartItems;
 
 	
 }

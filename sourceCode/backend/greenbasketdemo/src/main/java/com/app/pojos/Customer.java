@@ -6,10 +6,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -31,7 +33,7 @@ salary: '',*/
 @AllArgsConstructor
 @Setter
 @Getter
-@ToString
+@ToString(exclude = "password")
 public class Customer extends BaseEntity { 
 	@Column(length=20)
 	@JsonProperty("firstName")//appers in marshalled json data
@@ -49,6 +51,11 @@ public class Customer extends BaseEntity {
 	@Column(name="reg_date")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate reg_date;
+	
+	
+	@JsonIgnoreProperties("customerDetails")
+	@OneToOne(mappedBy = "customerDetails")
+	private Cart cart;
 	
 }
 

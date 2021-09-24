@@ -71,7 +71,7 @@ public class UserServiceImpl implements IUserService {
 		
 		// method to get customer by Id
 		@Override
-		public Customer getCustomerById(int customerId) { 
+		public Customer getCustomerById(long customerId) { 
 			return customerRepo.findById(customerId).orElseThrow(() ->new UserHandlingException("Invalid Customer Id"));
 		}
 		
@@ -92,10 +92,10 @@ public class UserServiceImpl implements IUserService {
 	 * @Override public User saveUserDetails(User transientUser) { // TODO
 	 * Auto-generated method stub return userRepo.save(transientUser); }
 	 * 
-	 * @Override public String deleteUserDetails(int UserId) {
+	 * @Override public String deleteUserDetails(long UserId) {
 	 * userRepo.deleteById(UserId); return "User Details Deleted"; }
 	 * 
-	 * @Override public User getUserDetails(int userId) { return
+	 * @Override public User getUserDetails(long userId) { return
 	 * userRepo.findById(userId).orElseThrow(() ->new
 	 * UserHandlingException("Invalid User Id"));
 	 * 
@@ -106,7 +106,7 @@ public class UserServiceImpl implements IUserService {
 	 */
 		
 		@Override
-		public ProductDetails getProductById(int productId) {
+		public ProductDetails getProductById(long productId) {
 			
 			return productRepo.findById(productId).orElseThrow(() ->new ProductHandlingException("Invalid product Id"));
 		}
@@ -120,7 +120,7 @@ public class UserServiceImpl implements IUserService {
 		
 
 		@Override
-		public String deleteProductById(int productId) {
+		public String deleteProductById(long productId) {
 			
 			productRepo.deleteById(productId);
 			return "Product deleted succesfully";

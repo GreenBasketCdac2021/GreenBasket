@@ -43,13 +43,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	public Customer registerCustomer(Customer customer) {
 		return customerRepo.save(customer);
 		}
-		/*
-		 * String tempEmaiId = user.getEmail(); if (tempEmaiId != null &&
-		 * !"".equals(tempEmaiId)) { User obj = userRepo.findByEmail(tempEmaiId); if
-		 * (obj != null) { throw new Exception("User with emailId" + tempEmaiId +
-		 * " already exist"); } } User tempUser = null; tempUser = userRepo.save(user);
-		 * return tempUser; }
-		 */
+		
 		  public Customer fetchCustomerByEmailId(String emailId) { 
 			  return customerRepo.findByEmail(emailId);
 		 }

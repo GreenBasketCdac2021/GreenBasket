@@ -63,11 +63,11 @@ public class Category extends BaseEntity{
 		this.productDetails = productDetails;
 	}
 
-	@Override //modified by Madhura
+	@Override 
 	public String toString() {
 		return "Category Id "+getId()+" categoryName=" + categoryName ;
 	}
-		//helper methods : added by Madhura
+		//helper methods 
 	public void addProduct(ProductDetails p)
 	{
 		productDetails.add(p);

@@ -22,9 +22,12 @@ public interface IUserService {
 	List<Customer> fetchAllCustomers();
 
 	// method to get customer by Id
-	Customer getCustomerById(int customerId);
+	Customer getCustomerById(long customerId);
 	
 //-----------------------------------------------------------------------------------------------------------//
+	
+	
+	//All about product
 	
 	// method to fetch all products
 	List<ProductDetails> fetchAllProducts();
@@ -33,14 +36,14 @@ public interface IUserService {
 	ProductDetails addNewProduct(ProductDetails product);
 		
 		//add method to get by id
-		ProductDetails getProductById(int productId);
+		ProductDetails getProductById(long productId);
 		
 	
 	//method to add update product by id
 	ProductDetails updateProduct(ProductDetails product);
 	
 	//method to delete product by id
-	String deleteProductById(int productId);
+	String deleteProductById(long productId);
 	
 	//add a method to list all category
 	List<User> getProductByCategory(String categoryName);
@@ -55,10 +58,10 @@ public interface IUserService {
 //	User saveUserDetails(User transientUser);
 //	  
 //	  // add a method to delete user details by Id 
-//	String deleteUserDetails(int UserId);
+//	String deleteUserDetails(long UserId);
 //	  
 //	  //add method to fetch user details by id 
-//	User getUserDetails(int userId);
+//	User getUserDetails(long userId);
 //	  
 //	  //add method to update the existing user details 
 //	User updateUserDetails(User
