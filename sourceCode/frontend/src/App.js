@@ -15,7 +15,7 @@ import About from './Components/Footer/About';
 import { Provider } from 'react-redux';
 import React from 'react';
 import store from './store';
-import Fruits from './Components/MainBody/Category/Fruits';
+import Fruits from './Components/MainBody/Customer/Category/Fruits';
 class App extends React.Component {
   render(){
     return (

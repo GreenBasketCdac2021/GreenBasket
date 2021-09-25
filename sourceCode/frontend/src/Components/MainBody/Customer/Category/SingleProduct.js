@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import { Container } from 'react-bootstrap';
-class SingleFruit extends React.Component{
+class SingleProduct extends React.Component{
     
     sayHello=(obj)=>console.log(obj)
 
@@ -33,4 +33,4 @@ class SingleFruit extends React.Component{
         );
     }
 }
-export default SingleFruit;
+export default SingleProduct;

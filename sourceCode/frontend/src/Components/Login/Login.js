@@ -11,6 +11,7 @@ import PropTyes from 'prop-types';
 import Header from '../Dashboard/Header';
 import Footer from '../Dashboard/Footer';
 import { Redirect } from 'react-router-dom';
+import store from '../../store';
 
 const style = {
     maxWidth:'40%',
@@ -31,7 +32,7 @@ class Login extends React.Component {
         this.state={
             email:'',
             password:'',
-            loadedin:false
+            loadedin:store.getState().reduxStore.auth.login_status
         };
         this.onChange=this.onChange.bind(this);
         this.onSubmit=this.onSubmit.bind(this);
@@ -45,23 +46,14 @@ class Login extends React.Component {
             email:this.state.email,
             password:this.state.password
         }
-        
-        console.log(reqBody);
         this.props.checkLogin(reqBody);
-        console.log(this.props.auth);
-        this.setState({loadedin:true})
     }
-    // componentDidMount(){
-    //     console.log(this.props.auth)
-    //     setTimeout(100000);
-    //     if(this.props.auth!=={})
-    //         window.location.replace("http://localhost:3000/fruits");
-    // }
     render(){
     return (
         <div>
             <Header/>
-            {this.state.loadedin?<Redirect to="/fruits" />:
+            
+            {store.getState().reduxStore.auth.login_status?<Redirect to="/" />:
             <form onSubmit={this.onSubmit} style={{height:'100vh',width:'100vw', background: 'linear-gradient(135deg, #364755 50%, #182835 50%)',position:'absolute',top:'0',left:'0'}}>
                 <img src="logo.png" style={{maxWidth:'100px'}} alt='logo' />
                 <div style={{display:'inline-block',position:'absolute',marginTop:'30px',textAlign:'center',color:'#fec14e'}}>
@@ -94,8 +86,8 @@ class Login extends React.Component {
                             } label="Remember me" />
                         </Grid>
                     </Grid>
-                    <Grid>
-                        <Grid item justifyContent="center">
+                    <Grid container justifyContent="center">
+                        <Grid item>
                             <Link href="signup">
                                     create new account
                             </Link>
