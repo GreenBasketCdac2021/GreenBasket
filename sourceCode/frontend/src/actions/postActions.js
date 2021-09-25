@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS/*,NEW_POST*/,LOGIN_AUTH} from "./types";
+import { FETCH_PRODUCTS/*,NEW_POST*/,LOGIN_CUST_AUTH} from "./types";
 import axios from 'axios';
 
 export const fetchProducts=()=>dispatch=>{
@@ -15,9 +15,9 @@ export const fetchProducts=()=>dispatch=>{
 export const checkLogin=(reqBody)=>dispatch=>{
     axios.post("http://localhost:8080/customer/login",reqBody)
     .then(auth=>dispatch({
-        type:LOGIN_AUTH,
-        auth:auth
+        type:LOGIN_CUST_AUTH,
+        auth:auth.data
     })).catch((err) => {
-        alert("invalid Credentials")
+        console.error(err);
     })
 }

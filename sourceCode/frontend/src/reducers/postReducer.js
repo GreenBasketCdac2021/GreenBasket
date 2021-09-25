@@ -1,11 +1,12 @@
-import { FETCH_PRODUCTS/*,NEW_POST*/,LOGIN_AUTH  } from "../actions/types";
+import { FETCH_PRODUCTS/*,NEW_POST*/,LOGIN_CUST_AUTH  } from "../actions/types";
 
 const initialState={
     auth:{},
     products:[],
-    product:{}
+    product:{},
+    cart:[]
 }
-export default function postReducer(state= initialState,action){
+export default function postReducer(state=initialState,action){
     switch(action.type){
         case FETCH_PRODUCTS:
             return {
@@ -13,12 +14,14 @@ export default function postReducer(state= initialState,action){
                 products: action.payload
             }
         //case NEW_POST:
-        case LOGIN_AUTH:
+        case LOGIN_CUST_AUTH:
             return{
                 ...state,
                 auth:action.auth
             }
+        
         default:
+            console.log(action.type);
             return state;
     }
 }

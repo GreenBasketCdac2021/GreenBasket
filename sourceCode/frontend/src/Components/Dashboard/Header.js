@@ -3,6 +3,7 @@ import {Navbar,Nav,Container} from 'react-bootstrap';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LockIcon from '@material-ui/icons/Lock';
+import {Link} from 'react-router-dom';
 
 class Header extends React.Component{
     constructor(props) {
@@ -25,9 +26,9 @@ class Header extends React.Component{
         else{
             AdminLogin=<Nav.Link href="AdminLogin"><LockIcon/>Admin Login</Nav.Link>;
             LoginUser=<>
-                        <Nav.Link href="login">
+                        <Link to="/login">
                             <LockIcon/>Login  
-                        </Nav.Link>
+                        </Link>
                     </>;
         }
         return(

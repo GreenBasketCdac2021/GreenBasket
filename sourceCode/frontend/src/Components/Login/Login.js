@@ -7,8 +7,11 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import {checkLogin} from '../../actions/postActions';
 import {connect} from 'react-redux';
-//import PropTyes from 'prop-types';
-import axios from 'axios';
+import PropTyes from 'prop-types';
+import Header from '../Dashboard/Header';
+import Footer from '../Dashboard/Footer';
+import { Redirect } from 'react-router-dom';
+
 const style = {
     maxWidth:'40%',
     minWidth:'400px',
@@ -27,7 +30,8 @@ class Login extends React.Component {
         super(props);
         this.state={
             email:'',
-            password:''
+            password:'',
+            loadedin:false
         };
         this.onChange=this.onChange.bind(this);
         this.onSubmit=this.onSubmit.bind(this);
@@ -42,16 +46,22 @@ class Login extends React.Component {
             password:this.state.password
         }
         
-        //this.props.checkLogin();
-        axios.post("http://localhost:8080/customer/login",reqBody)
-        .then(auth=>console.log(auth))
-        .catch((err) => {
-            alert("invalid Credentials")
-        })
+        console.log(reqBody);
+        this.props.checkLogin(reqBody);
+        console.log(this.props.auth);
+        this.setState({loadedin:true})
     }
+    // componentDidMount(){
+    //     console.log(this.props.auth)
+    //     setTimeout(100000);
+    //     if(this.props.auth!=={})
+    //         window.location.replace("http://localhost:3000/fruits");
+    // }
     render(){
     return (
         <div>
+            <Header/>
+            {this.state.loadedin?<Redirect to="/fruits" />:
             <form onSubmit={this.onSubmit} style={{height:'100vh',width:'100vw', background: 'linear-gradient(135deg, #364755 50%, #182835 50%)',position:'absolute',top:'0',left:'0'}}>
                 <img src="logo.png" style={{maxWidth:'100px'}} alt='logo' />
                 <div style={{display:'inline-block',position:'absolute',marginTop:'30px',textAlign:'center',color:'#fec14e'}}>
@@ -66,13 +76,13 @@ class Login extends React.Component {
                     <Grid container spacing={8} alignItems="flex-end">
                         {/* <Grid item md={3}>Username</Grid> */}
                         <Grid item md={12} sm={12} xs={12}>
-                            <TextField  onChange={this.onChange} id="email" margin="normal" variant="outlined" label="email" type="text" fullWidth required />
+                            <TextField  onChange={this.onChange} name="email" margin="normal" variant="outlined" label="email" type="text" fullWidth required />
                         </Grid>
                     </Grid>
                     <Grid container spacing={8} alignItems="flex-end">
                         {/* <Grid item md={3}>Password</Grid> */}
                         <Grid item md={12} sm={12} xs={12}>
-                            <TextField  onChange={this.onChange}   id="password" margin="normal" variant="outlined" label="Password" type="password" fullWidth required />
+                            <TextField  onChange={this.onChange}   name="password" margin="normal" variant="outlined" label="Password" type="password" fullWidth required />
                         </Grid>
                     </Grid>
                     <Grid container style={{marginTop:'5vh'}}>
@@ -85,7 +95,7 @@ class Login extends React.Component {
                         </Grid>
                     </Grid>
                     <Grid>
-                        <Grid item >
+                        <Grid item justifyContent="center">
                             <Link href="signup">
                                     create new account
                             </Link>
@@ -106,11 +116,18 @@ class Login extends React.Component {
                     </Grid>
                 </div>
             </form>
+            }
+            <Footer/>
         </div>
+        
     );
     }
 }
+Login.propTypes={
+    checkLogin:PropTyes.func.isRequired
+}
 const mapStateToProps =state=>({
-    auth:state.reduxStore.auth
+    auth:state.reduxStore.auth,
+    products:state.reduxStore.products
 })
 export default connect(mapStateToProps,{checkLogin})(Login);
