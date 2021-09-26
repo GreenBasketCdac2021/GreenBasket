@@ -84,26 +84,7 @@ public class UserServiceImpl implements IUserService {
 		public ProductDetails addNewProduct(ProductDetails product) {
 			return productRepo.save(product);
 		}
-	/*
-	 * @Override public List<User> fetchAllUsers() {
-	 * 
-	 * return userRepo.findAll(); //to list all the users }
-	 * 
-	 * @Override public User saveUserDetails(User transientUser) { // TODO
-	 * Auto-generated method stub return userRepo.save(transientUser); }
-	 * 
-	 * @Override public String deleteUserDetails(long UserId) {
-	 * userRepo.deleteById(UserId); return "User Details Deleted"; }
-	 * 
-	 * @Override public User getUserDetails(long userId) { return
-	 * userRepo.findById(userId).orElseThrow(() ->new
-	 * UserHandlingException("Invalid User Id"));
-	 * 
-	 * }
-	 * 
-	 * @Override public User updateUserDetails(User detachedUser) { //edit and
-	 * update user details return userRepo.save(detachedUser); }
-	 */
+	
 		
 		@Override
 		public ProductDetails getProductById(long productId) {

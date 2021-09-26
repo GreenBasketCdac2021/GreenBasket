@@ -48,24 +48,23 @@ public class CustomerServiceImpl implements ICustomerService {
 			  return customerRepo.findByEmail(emailId);
 		 }
 
-	/*
-	 * @Override public List<User> fetchAllUsers() {
-	 * 
-	 * return userRepo.findAll(); //to list all the users }
-	 * 
-	 * @Override public User saveUserDetails(User transientUser) { // TODO
-	 * Auto-generated method stub return userRepo.save(transientUser); }
-	 * 
-	 * @Override public String deleteUserDetails(int UserId) {
-	 * userRepo.deleteById(UserId); return "User Details Deleted"; }
-	 * 
-	 * @Override public User getUserDetails(int userId) { return
-	 * userRepo.findById(userId).orElseThrow(() ->new
-	 * UserHandlingException("Invalid User Id"));
-	 * 
-	 * }
-	 * 
-	 * @Override public User updateUserDetails(User detachedUser) { //edit and
-	 * update user details return userRepo.save(detachedUser); }
-	 */
-}
+//		@Override
+//		public Customer updateCustomer(Customer newcustomer, Long custId) {
+//			return customerRepo.findById(custId).map(customer -> 
+//			try{{
+//				customer.setFName(newcustomer.getFName());
+//				customer.setLastName(newcustomer.getLastName());
+//				customer.setEmail(newcustomer.getEmail());
+//				customer.setPassword(newcustomer.getPassword());
+//				customer.setPhone(newcustomer.getPhone());
+//				customer.setAddress(newcustomer.getAddress());
+//				customerRepo.save(customer);
+//				return customer;
+//			}}catch (Exception e) {
+//				// TODO: handle exception
+//			})
+//			}
+										
+		}
+
+
