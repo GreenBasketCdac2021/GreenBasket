@@ -4,29 +4,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dao.CustomerRepository;
 import com.app.pojos.Customer;
 import com.app.pojos.User;
 import com.app.service.ICustomerService;
-import com.app.service.IUserService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/customer")
 public class CustomerRestController {
 	public	CustomerRestController(){
-		 System.out.println("in constr of "+getClass().getName());
+		System.out.println("in constr of "+getClass().getName());
 	}
-	 
+
 	@Autowired
 	ICustomerService customerService;
-	
+	CustomerRepository customerRepo;
+
 	@PostMapping("/login")
 	public ResponseEntity<?> checkUser(@RequestBody Customer customer){
 		Customer u=customerService.validateCustomer(customer);
@@ -36,7 +37,7 @@ public class CustomerRestController {
 			return new ResponseEntity<String>("{invalid credentials}",HttpStatus.OK);
 		}
 	}
-	
+
 	@PostMapping("/register")
 	public ResponseEntity<?> registerNewUser(@RequestBody Customer customer){
 		String tempEmailId = customer.getEmail(); 
@@ -44,10 +45,17 @@ public class CustomerRestController {
 			Customer obj = customerService.fetchCustomerByEmailId(tempEmailId);
 			if(obj != null) { 
 				return new ResponseEntity<String>("User with emailId" + tempEmailId +" already exist",HttpStatus.OK); 
-				} 
 			} 
+		} 
 		Customer tempUser = null; 
 		tempUser =customerService.registerCustomer(customer);
-			  return new ResponseEntity<String>("user created successfully",HttpStatus.OK);
-			 }	
+		return new ResponseEntity<String>("user created successfully",HttpStatus.OK);
 	}
+	
+//	@PutMapping("/updateCustomer/{custId}")
+//	public ResponseEntity<?> updateCustomer(@RequestBody Customer customer,@PathVariable Long custId){
+//		System.out.println("in update method of"+customer+" "+custId);
+//		return ResponseEntity.ok(customerService.updateCustomer(custId));
+//		  
+//	}
+}

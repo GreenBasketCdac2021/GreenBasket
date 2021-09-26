@@ -1,6 +1,9 @@
 package com.app.service;
 
+import java.util.Optional;
+
 import com.app.pojos.Customer;
+import com.app.pojos.ProductDetails;
 
 public interface ICustomerService {
 	//method to validate user
@@ -11,17 +14,8 @@ public interface ICustomerService {
 
 	public Customer fetchCustomerByEmailId(String tempEmaiId); 
 	
-	/*
-	 * //method to fetch- list all users List<User> fetchAllUsers();
-	 * 
-	 * //method to save user details User saveUserDetails(User transientUser);
-	 * 
-	 * // add a method to delete user details by Id String deleteUserDetails(int
-	 * UserId);
-	 * 
-	 * //add method to fetch user details by id User getUserDetails(int userId);
-	 * 
-	 * //add method to update the existing user details User updateUserDetails(User
-	 * detachedUser);
-	 */
+	//method to add update customer
+	//public Customer updateCustomer(Customer newcustomer, Long CustId);
+	
+	
 }
