@@ -15,7 +15,8 @@ import About from './Components/Footer/About';
 import { Provider } from 'react-redux';
 import React from 'react';
 import store from './store';
-import Fruits from './Components/MainBody/Category/Fruits';
+import Fruits from './Components/MainBody/Customer/Category/Fruits';
+import AddProduct from './Components/MainBody/Admin/AddProduct';
 class App extends React.Component {
   render(){
     return (
@@ -31,9 +32,10 @@ class App extends React.Component {
                 <Route path="/login" exact component={Login}/>
                 <Route path="/signup" exact component={Signup}/>
                 <Route path="/forgotPassword" exact component={ForgotPassword}/>
-
-                <Route path="/AdminLogin" exact component={AdminLogin}/>
                 
+                {/* Admin */}
+                <Route path="/AdminLogin" exact component={AdminLogin}/>
+                <Route path="/AddProduct" exact component={AddProduct}/>
 
                 {/**DashBoard */}
                 <Route path="/fruits" exact component={Fruits}/>

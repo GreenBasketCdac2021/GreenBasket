@@ -1,19 +1,36 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import MainBody from '../MainBody/MainBody';
+import MainBodyCustomer from '../MainBody/Customer/MainBodyCustomer';
+import MainBodyAdmin from '../MainBody/Admin/MainBodyAdmin';
+import Store from '../../store'
+import {connect} from 'react-redux';
+import {fetchProducts} from '../../actions/postActions'
+
 
 class Dashboard extends React.Component {
+    constructor(props){
+        super(props)
+        this.state={}
+        this.props.fetchProducts();
+    }
     render(){    
         return (
                 <div>     
                     <Header/>
-                        <MainBody/>
+                        {console.log(this.props)}
+                        {Store.getState().reduxStore.auth.object.role==="Customer"?
+                        <MainBodyCustomer/>:
+                        <MainBodyAdmin/>
+                        }
                     <Footer/>
                 </div>
         );
     }
 }
-export default Dashboard;
+const mapStateToProps =state=>({
+    product:state.reduxStore.products
+})
+export default connect(mapStateToProps,{fetchProducts})(Dashboard);
 
 
