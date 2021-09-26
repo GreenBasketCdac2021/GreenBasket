@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import {fetchProducts} from '../../../../actions/postActions'
 import store from '../../../../store';
 
-class Fruits extends React.Component{
+class Vegetables extends React.Component {
     constructor(props){
         super(props)
         this.props.fetchProducts();
@@ -16,10 +16,7 @@ class Fruits extends React.Component{
             reduxStore:store.getState().reduxStore,
         }
     }
-    // componentDidMount(){
-    // }
-
-    render(){
+    render() {
         return(
             <>
                 <Header/>
@@ -28,7 +25,7 @@ class Fruits extends React.Component{
                     {console.log()}
                     {
                         this.state.reduxStore.products.map(function(singleFruitObject, index)   {
-                                if(singleFruitObject.categoryName.categoryName==='FRUITS')
+                                if(singleFruitObject.categoryName.categoryName==='VEGETABLES')
                                 return <SingleProduct key={index} 
                                     object={singleFruitObject} 
                                     spacing={2}
@@ -47,4 +44,4 @@ class Fruits extends React.Component{
 const mapStateToProps =state=>({
     product:state.reduxStore.products
 })
-export default connect(mapStateToProps,{fetchProducts})(Fruits);
+export default connect(mapStateToProps,{fetchProducts})(Vegetables);

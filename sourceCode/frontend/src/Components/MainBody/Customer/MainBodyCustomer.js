@@ -10,20 +10,21 @@ import Sprouts from './sprouts.png';
 
 const category={
     fruit:{title:"Fruits",text:"A",link:"fruits"},
-    vegetables:{title:"Vegetable",text:"B",link:"vegetable"},
+    vegetables:{title:"Vegetables",text:"B",link:"vegetables"},
     sprouts:{title:"Sprouts",text:"C",link:"sprouts"}
 }
 class MainBody extends React.Component{
     render(){
         return (
             <div style={{marginLeft:'0px',width:'100%', background: 'linear-gradient(135deg, #364755 50%, #182835 50%)',position:'absolute',MarginTop:'0'}}>
+                
                 {/* <div style={{width:"100%",marginTop:"10px"}}>
                     <center><img src={Photo} style={{width:'40vw'}} alt="fruit"/></center>
                 </div> */}
                 <Grid container alignItems="flex-end" style={{marginTop:'20px'}} className="justify-content-around">
-                    <Category title={category.fruit.title} imgSrc={Fruits} text={category.fruit.text} link={category.fruit.link}/>
-                    <Category title={category.vegetables.title} imgSrc={Vegetable} text={category.vegetables.text} link={category.vegetables.link}/>
-                    <Category title={category.sprouts.title} imgSrc={Sprouts} text={category.sprouts.text} link={category.sprouts.link}/>
+                    <Category title={category.fruit.title} imgSrc={Fruits} text={category.fruit.text} link={category.fruit.link} type="FRUITS"/>
+                    <Category title={category.vegetables.title} imgSrc={Vegetable} text={category.vegetables.text} link={category.vegetables.link} type="VEGETABLES"/>
+                    <Category title={category.sprouts.title} imgSrc={Sprouts} text={category.sprouts.text} link={category.sprouts.link} type="SPROUTS"/>
                 </Grid>
                 <br/>
                 <br/>

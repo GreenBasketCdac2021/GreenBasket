@@ -3,6 +3,9 @@ import Grid from "@material-ui/core/Grid";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Form } from 'react-bootstrap';
+import { addProduct } from '../../../actions/postActions';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 const style = {
     maxWidth:'40%',
     minWidth:'400px',
@@ -22,15 +25,33 @@ const style = {
 class AddProduct extends Component {
     constructor(prop){
         super(prop);
+        this.state={
+            productName:"",
+            productDescription:"",
+            unitPrice:"",
+            stock:"",
+            categoryName:{
+                id:0,
+                category:""
+            },
+            type:"FRUITS"
+        }
         this.onSubmit=this.onSubmit.bind(this);
-        
+        this.onChange=this.onChange.bind(this);
+    }
+    onChange(e){
+        this.setState({[e.target.name]:e.target.value});
     }
     onSubmit(e){
         e.preventDefault();
-        const reqBody={
-            productName :this.state
-        }
+        var id=0;
+        this.state.type==="FRUITS"?id=1:this.state.type==="VEGETABLES"?id=2:id=3;
+        const reqBody=this.state
+        reqBody.categoryName.id=id
+        delete reqBody.type;
         console.log(reqBody);
+        this.props.addProduct();
+        <Redirect to="/"/>
     }
     render() {
         return (
@@ -41,17 +62,17 @@ class AddProduct extends Component {
                     <h1> Green Basket</h1>
                 </div>
                 <div style={style}>
-                    <Grid container spacing={8} alignItems="center">
+                    <Grid container spacing={8} justifyContent="center">
                         <Grid item >
                             <h1 style={{color:'red'}}>Add New Product</h1>
                         </Grid>
                     </Grid>
-                    <Grid container spacing={8} alignItems="flex-end">
+                    <Grid container spacing={8} justifyContent="flex-end">
                         <Grid item md={12} sm={12} xs={12}>
                             <TextField  onChange={this.onChange} name="productName" margin="normal" variant="filled" label="Product Name" type="text" fullWidth required/>
                         </Grid>
                         <Grid item md={12} sm={12} xs={12}>
-                            <TextField  onChange={this.onChange} name="productDecription" margin="normal" variant="filled" label="Product Decription" type="text" fullWidth required/>
+                            <TextField  onChange={this.onChange} name="productDescription" margin="normal" variant="filled" label="Product Decription" type="text" fullWidth required/>
                         </Grid>
                         <Grid item md={6} sm={6} xs={6}>
                         <TextField  onChange={this.onChange} name="unitPrice" margin="normal" variant="filled" label="Unit Price/KG" type="number" min="1" fullWidth required/>
@@ -59,8 +80,8 @@ class AddProduct extends Component {
                         <Grid item md={6} sm={6} xs={6}>
                             <TextField  onChange={this.onChange} name="stock" margin="normal" variant="filled" label="Stock" type="number" min="0" fullWidth required/>
                         </Grid>
-                        <Grid item md={12} sm={12} xs={12} alignItems="center">
-                            <Form.Select fullWidth>
+                        <Grid item md={12} sm={12} xs={12} >
+                            <Form.Select onChange={this.onChange} name="type">
                                 <option value="FRUITS">Fruits</option>
                                 <option value="VEGETABLES">Vegetables</option>
                                 <option value="SPROUTS">Sprouts</option>
@@ -85,6 +106,8 @@ class AddProduct extends Component {
     }
 }
 
+const mapStateToProps =state=>({
+    products:state.reduxStore.products
+})
 
-
-export default AddProduct;
+export default connect(mapStateToProps,{addProduct})(AddProduct);

@@ -3,7 +3,6 @@ import {Navbar,Nav,Container,Dropdown} from 'react-bootstrap';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LockIcon from '@material-ui/icons/Lock';
-import {Link} from 'react-router-dom';
 import Store from '../../store';
 import { resetStore } from '../../actions/postActions';
 import {connect} from 'react-redux';
@@ -58,7 +57,7 @@ class Header extends React.Component{
                                         </Nav.Link>
                                     </>
                                     }
-                                    {this.state.auth.object.role==="Customer"?
+                                    {this.state.auth.role==="Customer"?
                                         <Nav.Link href="cart">
                                             <ShoppingCartIcon/>cart
                                         </Nav.Link>

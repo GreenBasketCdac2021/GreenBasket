@@ -17,6 +17,9 @@ import React from 'react';
 import store from './store';
 import Fruits from './Components/MainBody/Customer/Category/Fruits';
 import AddProduct from './Components/MainBody/Admin/AddProduct';
+import Vegetables from './Components/MainBody/Customer/Category/Vegetables';
+import Sprouts from './Components/MainBody/Customer/Category/Sprouts';
+import NotFound from './Components/NotFound';
 class App extends React.Component {
   render(){
     return (
@@ -39,6 +42,8 @@ class App extends React.Component {
 
                 {/**DashBoard */}
                 <Route path="/fruits" exact component={Fruits}/>
+                <Route path="/vegetables" exact component={Vegetables}/>
+                <Route path="/sprouts" exact component={Sprouts}/>
                 
                 <Route path="/cart" exact component={Cart}/>
                 
@@ -47,7 +52,7 @@ class App extends React.Component {
                 
                 {/**about */}
                 <Route path="/about" exact component={About}/>
-                
+                <Route component={NotFound} />
               </Switch>
           </Router>
         </div>
