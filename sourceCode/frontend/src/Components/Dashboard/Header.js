@@ -12,7 +12,8 @@ class Header extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            auth:Store.getState().reduxStore.auth
+            auth:Store.getState().reduxStore.auth,
+            reduxStore:Store.getState().reduxStore
         };
         
     }
@@ -49,13 +50,20 @@ class Header extends React.Component{
                                         </Dropdown>
 
                                     :<>
-                                    <Link to="/AdminLogin"><LockIcon/>Admin Login</Link>
-                                        <Link to="/login">
+                                        <Nav.Link href="/AdminLogin">
+                                            <LockIcon/>Admin Login
+                                        </Nav.Link>
+                                        <Nav.Link href="/login">
                                             <LockIcon/>Login  
-                                        </Link>
+                                        </Nav.Link>
                                     </>
                                     }
-                                    <Nav.Link href="cart"><ShoppingCartIcon/>cart</Nav.Link>
+                                    {this.state.auth.object.role==="Customer"?
+                                        <Nav.Link href="cart">
+                                            <ShoppingCartIcon/>cart
+                                        </Nav.Link>
+                                    :<></>
+                                    }
                                 </Nav>
                             </Navbar.Collapse>
                 </Container>

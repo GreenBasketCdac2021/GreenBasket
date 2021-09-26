@@ -7,6 +7,7 @@ const initialState={
         },
         login_status:false,
     },
+    role:'Customer',
     products:[],
     product:{},
     cart:[]
@@ -26,7 +27,8 @@ export default function postReducer(state=initialState,action){
                     object:action.auth,
                     login_status:action.login_status,
                     role:"Customer"
-                }
+                },
+                role:"Customer"
             }
         case LOGIN_ADMIN_AUTH:
                 return{
@@ -36,6 +38,7 @@ export default function postReducer(state=initialState,action){
                         login_status:action.login_status,
                         role:"ADMIN"
                     },
+                    role:"ADMIN"
                 }
         case CUSTOMER_CART:
             return {...state};

@@ -6,11 +6,15 @@ import SingleProduct from './SingleProduct';
 import Grid from '@material-ui/core/Grid';
 import {connect} from 'react-redux';
 import {fetchProducts} from '../../../../actions/postActions'
+import store from '../../../../store';
 
 class Fruits extends React.Component{
     constructor(props){
         super(props)
         this.props.fetchProducts();
+        this.state={
+            reduxStore:store.getState().reduxStore,
+        }
     }
     // componentDidMount(){
     // }
@@ -23,13 +27,15 @@ class Fruits extends React.Component{
                     <Grid  container style={{marginTop:'20px',marginLeft:'5vw',marginRight:'5vw',maxWidth:"90vw"}} spacing={3} >
                     
                     {
-                        this.props.products.map(
-                            (singleFruitObject, index) =>  
-                                <SingleProduct key={index} 
+                        this.state.reduxStore.products.map(function(singleFruitObject, index)   {
+                                if(singleFruitObject.categoryName.categoryName==='FRUITSa')
+                                return <SingleProduct key={index} 
                                     object={singleFruitObject} 
                                     spacing={2}
                                     type="FRUITS"
                                 />
+                                return <div key={index}></div>
+                            }
                         )
                     }
                     </Grid>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Grid from "@material-ui/core/Grid";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Select from 'react-select';
+import { Form } from 'react-bootstrap';
 const style = {
     maxWidth:'40%',
     minWidth:'400px',
@@ -17,11 +17,7 @@ const style = {
 };
 
 
-var options=[
-    { value: 1, label: "FRUITS" },
-    { value: 2, label: "Vegetables" },
-    { value: 3, label: "Sprouts" }
-    ];
+
 
 class AddProduct extends Component {
     constructor(prop){
@@ -64,13 +60,16 @@ class AddProduct extends Component {
                             <TextField  onChange={this.onChange} name="stock" margin="normal" variant="filled" label="Stock" type="number" min="0" fullWidth required/>
                         </Grid>
                         <Grid item md={12} sm={12} xs={12} alignItems="center">
-                            <Select options={options} isSearchable required >
-                            </Select>
+                            <Form.Select fullWidth>
+                                <option value="FRUITS">Fruits</option>
+                                <option value="VEGETABLES">Vegetables</option>
+                                <option value="SPROUTS">Sprouts</option>
+                            </Form.Select>
                         </Grid>
                     </Grid>
                     
                     
-                    <Grid container justifyContent="center" style={{ marginTop: '2%' }}>
+                    <Grid container justifyContent="center" style={{ marginTop: '2vh' }}>
                         <Grid item md={4}>
 
                             <Button  onSubmit={this.onSubmit} type="submit" variant="contained" style={{ textTransform: "none", backgroundColor:"#fec14e",color:"white",minWidth:"100px",fontWeight:'bolder',fontSize:'medium',borderRadius:'5pt'}}>
