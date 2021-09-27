@@ -9,7 +9,7 @@ import Fruits from './fruits.jpg';
 import Sprouts from './sprouts.png';
 
 const category={
-    fruit:{title:"Fruits",text:"A",link:"fruits"},
+    fruit:{title:"Fruits",text:"a",link:"fruits"},
     vegetables:{title:"Vegetables",text:"B",link:"vegetables"},
     sprouts:{title:"Sprouts",text:"C",link:"sprouts"}
 }
@@ -29,12 +29,13 @@ class MainBody extends React.Component{
                 <br/>
                 <br/>
                 <br/>
-                <Button variant="success" style={{width:'20%',marginLeft:'40vw',marginTop:'0px'}}>
-                    <Link to="all" className="btn">
-                        All
-                    </Link>
-                </Button>
+                <Link to="/all" >
+                    <Button variant="success" style={{width:'20%',marginLeft:'40vw',marginTop:'0px'}}>
+                        
+                            All
+                    </Button>
                 
+                </Link>
                 <div style={{marginTop:"20vh"}}>a</div>
             </div>
         );

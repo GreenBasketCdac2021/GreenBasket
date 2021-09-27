@@ -19,6 +19,7 @@ import Fruits from './Components/MainBody/Customer/Category/Fruits';
 import AddProduct from './Components/MainBody/Admin/AddProduct';
 import UpdateProduct from './Components/MainBody/Admin/UpdateProduct';
 import Vegetables from './Components/MainBody/Customer/Category/Vegetables';
+import AllProduct from './Components/MainBody/Customer/Category/AllProduct';
 import Sprouts from './Components/MainBody/Customer/Category/Sprouts';
 import NotFound from './Components/NotFound';
 class App extends React.Component {
@@ -46,6 +47,9 @@ class App extends React.Component {
                 <Route path="/fruits" exact component={Fruits}/>
                 <Route path="/vegetables" exact component={Vegetables}/>
                 <Route path="/sprouts" exact component={Sprouts}/>
+                <Route path="/all" exact component={AllProduct}/>
+
+
                 
                 <Route path="/cart" exact component={Cart}/>
                 
