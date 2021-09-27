@@ -4,17 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dao.CustomerRepository;
 import com.app.pojos.Customer;
-import com.app.pojos.User;
 import com.app.service.ICustomerService;
+import com.app.service.IMailService;
+import com.app.service.MailServiceImp;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -27,6 +27,8 @@ public class CustomerRestController {
 	@Autowired
 	ICustomerService customerService;
 	CustomerRepository customerRepo;
+	@Autowired
+	IMailService mailService;
 
 	@PostMapping("/login")
 	public ResponseEntity<?> checkUser(@RequestBody Customer customer){
@@ -51,11 +53,42 @@ public class CustomerRestController {
 		tempUser =customerService.registerCustomer(customer);
 		return new ResponseEntity<String>("user created successfully",HttpStatus.OK);
 	}
+	@PostMapping("/emailPassword")
+	public ResponseEntity<?> registerNewUser(@RequestParam String email){
+		Customer obj = customerService.fetchCustomerByEmailId(email);
+		String message = "Hi this is your password: "+obj.getPassword();
+		if(obj != null) {
+			new MailServiceImp().sendMail(obj.getEmail(),"GreenBasket Password",message);
+			return new ResponseEntity<String>("password mail sent",HttpStatus.OK);
+		}
+		return new ResponseEntity<String>("user not found",HttpStatus.OK);
+	}
 	
-//	@PutMapping("/updateCustomer/{custId}")
-//	public ResponseEntity<?> updateCustomer(@RequestBody Customer customer,@PathVariable Long custId){
-//		System.out.println("in update method of"+customer+" "+custId);
-//		return ResponseEntity.ok(customerService.updateCustomer(custId));
-//		  
+//	@PostMapping("/sendotp")
+//	public ResponseEntity<?> sendOtp(@RequestParam String email){
+//		Customer customer = customerService.fetchCustomerByEmailId(email);
+//		String body = "Hi "+customer.getFName()+",\n your OTP is "+customer.getId()+". \n\n Thanks, \n green Basket";
+//		if(customer != null) {
+//			mailService.sendMail(customer.getEmail(), "OTP from green basket", body);
+//			return new ResponseEntity<String>("user found and mail sent",HttpStatus.OK);
+//		} else{
+//			return new ResponseEntity<String>("user Not found",HttpStatus.OK);
+//		}
+		
+	//} 
+	  
 //	}
+//	
+//	@PostMapping("/changepass")
+//	public ResponseEntity<?> changepass(@RequestParam String email,@RequestParam String password){
+//		Customer customer = customerService.fetchCustomerByEmailId(email);
+//		String body = "Hi "+customer.getFName()+",\n your OTP is "+customer.getId()+". \n\n Thanks, \n green Basket";
+//		if(customer != null) {
+//			mailService.sendMail(customer.getEmail(), "OTP from green basket", body);
+//			return new ResponseEntity<String>("user found and mail sent",HttpStatus.OK);
+//		} else{
+//			return new ResponseEntity<String>("user Not found",HttpStatus.OK);
+//		}
+	
+	
 }

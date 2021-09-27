@@ -42,29 +42,29 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	public Customer registerCustomer(Customer customer) {
 		return customerRepo.save(customer);
-		}
-		
-		  public Customer fetchCustomerByEmailId(String emailId) { 
-			  return customerRepo.findByEmail(emailId);
-		 }
+	}
 
-//		@Override
-//		public Customer updateCustomer(Customer newcustomer, Long custId) {
-//			return customerRepo.findById(custId).map(customer -> 
-//			try{{
-//				customer.setFName(newcustomer.getFName());
-//				customer.setLastName(newcustomer.getLastName());
-//				customer.setEmail(newcustomer.getEmail());
-//				customer.setPassword(newcustomer.getPassword());
-//				customer.setPhone(newcustomer.getPhone());
-//				customer.setAddress(newcustomer.getAddress());
-//				customerRepo.save(customer);
-//				return customer;
-//			}}catch (Exception e) {
-//				// TODO: handle exception
-//			})
-//			}
-										
-		}
+	public Customer fetchCustomerByEmailId(String emailId) { 
+		return customerRepo.findByEmail(emailId);
+	}
+
+	//		@Override
+	//		public Customer updateCustomer(Customer newcustomer, Long custId) {
+	//			return customerRepo.findById(custId).map(customer -> 
+	//			try{{
+	//				customer.setFName(newcustomer.getFName());
+	//				customer.setLastName(newcustomer.getLastName());
+	//				customer.setEmail(newcustomer.getEmail());
+	//				customer.setPassword(newcustomer.getPassword());
+	//				customer.setPhone(newcustomer.getPhone());
+	//				customer.setAddress(newcustomer.getAddress());
+	//				customerRepo.save(customer);
+	//				return customer;
+	//			}}catch (Exception e) {
+	//				// TODO: handle exception
+	//			})
+	//			}
+
+}
 
 

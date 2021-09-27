@@ -6,6 +6,7 @@ import com.app.pojos.Category;
 import com.app.pojos.Customer;
 import com.app.pojos.ProductDetails;
 import com.app.pojos.User;
+import com.app.pojos.UserRole;
 
 public interface IUserService {
 	// method to validate user
@@ -15,6 +16,8 @@ public interface IUserService {
 	public User registerUser(User user);
 
 	public User fetchUserByEmailId(String tempEmaiId);
+	
+	public User fetchUserByRole(UserRole role);
 
 //----------------------------------------------------------------------------------------------------//
 	//doing all bt admin

@@ -21,6 +21,7 @@ import com.app.pojos.Category;
 import com.app.pojos.Customer;
 import com.app.pojos.ProductDetails;
 import com.app.pojos.User;
+import com.app.pojos.UserRole;
 
 @Service
 @Transactional
@@ -111,6 +112,12 @@ public class UserServiceImpl implements IUserService {
 		public List<User> getProductByCategory(String categoryName) {
 			// TODO Auto-generated method stub
 			return null;
+		}
+
+		@Override
+		public User fetchUserByRole(UserRole role) {
+			
+			return userRepo.findByRole(role);
 		}
 
 		

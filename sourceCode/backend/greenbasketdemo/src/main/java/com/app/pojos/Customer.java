@@ -40,7 +40,7 @@ public class Customer extends BaseEntity {
 	private String fName;
 	@Column(length=20)
 	private String lastName;
-	@Column(length=20,nullable=false )
+	@Column(length=100,nullable=false )
 	private String email;
 	@Column(length=20,nullable=false )
 	private String password;
