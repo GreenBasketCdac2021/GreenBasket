@@ -18,7 +18,7 @@ class MainBodyAdmin extends Component {
         return (
             <div>;
                 <div style={{marginLeft:'20vw',marginRight:'20vw',width:'60vw',display: "flex",justifyContent: "center"}} >
-                    <Button variant="contained" color="secondary">
+                    <Button variant="contained" color="primary">
                             <Link to="/addProduct" >
                                 <div style={{color:"#fff"}}><AddIcon/>ADD new Product</div>
                             </Link>

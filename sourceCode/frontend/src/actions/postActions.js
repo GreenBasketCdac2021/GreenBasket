@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS/*,NEW_POST*/,LOGIN_CUST_AUTH,RESET_STORE,ADD_PRODUCT_TO_CART} from "./types";
+import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,LOGIN_ADMIN_AUTH,RESET_STORE,ADD_PRODUCT_TO_CART} from "./types";
 import axios from 'axios';
 
 export const fetchProducts=()=>dispatch=>{
@@ -11,6 +11,18 @@ export const fetchProducts=()=>dispatch=>{
             console.error(error);
         })
 }
+
+
+export const addProduct=(reqBody)=>dispatch=>{
+    axios.post("http://localhost:8080/user/product",reqBody)
+    .then(auth=>dispatch({
+            type:ADD_PRODUCT,
+            auth:auth.data
+        })).catch((err) => {
+        console.error(err);
+    })
+}
+
 
 export const checkLogin=(reqBody)=>dispatch=>{
     axios.post("http://localhost:8080/customer/login",reqBody)
@@ -46,7 +58,7 @@ export const checkAdminLogin=(reqBody)=>dispatch=>{
                 alert("Invalid Credentials")
             }
             dispatch({
-            type:LOGIN_CUST_AUTH,
+            type:LOGIN_ADMIN_AUTH,
             auth:auth.data,
             login_status:login_status
         })

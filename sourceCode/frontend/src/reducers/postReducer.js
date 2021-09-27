@@ -1,12 +1,12 @@
-import { FETCH_PRODUCTS/*,NEW_POST*/,LOGIN_CUST_AUTH,RESET_STORE,CUSTOMER_CART,LOGIN_ADMIN_AUTH } from "../actions/types";
+import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,RESET_STORE,CUSTOMER_CART,LOGIN_ADMIN_AUTH } from "../actions/types";
 
 const initialState={
     auth:{
-        object:{
-            role:'Customer'
-        },
+        object:{},
         login_status:false,
+        role:'Customer',
     },
+    
     products:[],
     product:{},
     cart:[]
@@ -18,7 +18,8 @@ export default function postReducer(state=initialState,action){
                 ...state,
                 products: action.payload
             }
-        //case NEW_POST:
+        case ADD_PRODUCT:
+            return {...state}
         case LOGIN_CUST_AUTH:
             return{
                 ...state,
@@ -26,7 +27,8 @@ export default function postReducer(state=initialState,action){
                     object:action.auth,
                     login_status:action.login_status,
                     role:"Customer"
-                }
+                },
+                
             }
         case LOGIN_ADMIN_AUTH:
                 return{
@@ -42,6 +44,6 @@ export default function postReducer(state=initialState,action){
         case RESET_STORE:
             return initialState;
         default:
-            return state;
+            return {...state};
     }
 }
