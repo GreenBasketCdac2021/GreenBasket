@@ -31,10 +31,90 @@ salary: '',*/
 @Table(name="customer")
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
+//@Setter
+//@Getter
 @ToString(exclude = "password")
 public class Customer extends BaseEntity { 
+	public String getfName() {
+		return fName;
+	}
+
+
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public LocalDate getReg_date() {
+		return reg_date;
+	}
+
+
+	public void setReg_date(LocalDate reg_date) {
+		this.reg_date = reg_date;
+	}
+
+
+	public Cart getCart() {
+		return cart;
+	}
+
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+
 	@Column(length=20)
 	@JsonProperty("firstName")//appers in marshalled json data
 	private String fName;

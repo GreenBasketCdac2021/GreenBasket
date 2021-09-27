@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,RESET_STORE,CUSTOMER_CART,LOGIN_ADMIN_AUTH } from "../actions/types";
+import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,RESET_STORE,CUSTOMER_CART,LOGIN_ADMIN_AUTH,DELETE_PRODUCT_BY_ID,UPDATE_PRODUCT } from "../actions/types";
 
 const initialState={
     auth:{
@@ -31,14 +31,24 @@ export default function postReducer(state=initialState,action){
                 
             }
         case LOGIN_ADMIN_AUTH:
+                var role;
+                if(action.auth.role==="ADMIN")
+                    role="ADMIN"
+                else
+                    role="DELIVERYBOY"
+                delete action.auth[role]; 
                 return{
                     ...state,
                     auth:{
                         object:action.auth,
                         login_status:action.login_status,
-                        role:"ADMIN"
+                        role:role
                     },
                 }
+        case DELETE_PRODUCT_BY_ID:
+            return {...state}
+        case UPDATE_PRODUCT:
+            return {...state}
         case CUSTOMER_CART:
             return {...state};
         case RESET_STORE:

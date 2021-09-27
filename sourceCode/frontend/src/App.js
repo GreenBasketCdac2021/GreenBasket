@@ -17,6 +17,7 @@ import React from 'react';
 import store from './store';
 import Fruits from './Components/MainBody/Customer/Category/Fruits';
 import AddProduct from './Components/MainBody/Admin/AddProduct';
+import UpdateProduct from './Components/MainBody/Admin/UpdateProduct';
 import Vegetables from './Components/MainBody/Customer/Category/Vegetables';
 import Sprouts from './Components/MainBody/Customer/Category/Sprouts';
 import NotFound from './Components/NotFound';
@@ -39,6 +40,7 @@ class App extends React.Component {
                 {/* Admin */}
                 <Route path="/AdminLogin" exact component={AdminLogin}/>
                 <Route path="/AddProduct" exact component={AddProduct}/>
+                <Route path="/UpdateProduct" exact component={UpdateProduct}/>
 
                 {/**DashBoard */}
                 <Route path="/fruits" exact component={Fruits}/>

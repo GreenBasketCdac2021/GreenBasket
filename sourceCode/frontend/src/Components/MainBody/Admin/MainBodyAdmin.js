@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import store from '../../../store';
-import SingleProduct from '../Customer/Category/SingleProduct';
+import SingleProduct from './SingleProduct';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
@@ -11,15 +11,14 @@ class MainBodyAdmin extends Component {
         this.state={
             product:[]
         }
-            this.state.product=store.getState().reduxStore.products
     }
     
     render() {
         return (
-            <div>;
+            <div style={{background:"#999"}}> 
                 <div style={{marginLeft:'20vw',marginRight:'20vw',width:'60vw',display: "flex",justifyContent: "center"}} >
-                    <Button variant="contained" color="primary">
-                            <Link to="/addProduct" >
+                    <Button variant="contained" color="primary" style={{marginTop:"1vh"}}>
+                            <Link to="/addProduct">
                                 <div style={{color:"#fff"}}><AddIcon/>ADD new Product</div>
                             </Link>
                     </Button>
@@ -27,7 +26,7 @@ class MainBodyAdmin extends Component {
                 <Grid  container style={{marginTop:'20px',marginLeft:'5vw',marginRight:'5vw',maxWidth:"90vw"}} spacing={3} >
                     
                     {
-                        this.state.product.map(
+                        store.getState().reduxStore.products.map(
                             (singleFruitObject, index) =>  
                                 <SingleProduct key={index} 
                                     object={singleFruitObject} 
@@ -37,6 +36,7 @@ class MainBodyAdmin extends Component {
                         )
                     }
                     </Grid>
+                    <div style={{marginBottom:"7vh"}}></div>
             </div>
         )
     }

@@ -16,7 +16,7 @@ class Dashboard extends React.Component {
     }
     render(){    
         return (
-                <div>     
+                <div>    
                     <Header/>
                         {console.log(Store.getState().reduxStore.auth.role)}
                         {Store.getState().reduxStore.auth.role==="Customer"?

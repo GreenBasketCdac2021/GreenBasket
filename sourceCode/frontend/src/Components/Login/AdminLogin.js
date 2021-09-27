@@ -1,10 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
 import {checkAdminLogin} from '../../actions/postActions';
 import {connect} from 'react-redux';
 import PropTyes from 'prop-types';
@@ -46,7 +43,6 @@ class AdminLogin extends React.Component {
             email:this.state.email,
             password:this.state.password
         }
-        console.log(reqBody);
         this.props.checkAdminLogin(reqBody);
     }
     render(){
@@ -56,10 +52,7 @@ class AdminLogin extends React.Component {
             
             {store.getState().reduxStore.auth.login_status?<Redirect to="/" />:
             <form onSubmit={this.onSubmit} style={{height:'100vh',width:'100vw', background: 'linear-gradient(135deg, #364755 50%, #182835 50%)',position:'absolute',top:'0',left:'0'}}>
-                <img src="logo.png" style={{maxWidth:'100px'}} alt='logo' />
-                <div style={{display:'inline-block',position:'absolute',marginTop:'30px',textAlign:'center',color:'#fec14e'}}>
-                    <h1> Green Basket</h1>
-                </div>
+                <Header/>
                 <div style={style}>
                     <Grid container spacing={8} alignItems="center">
                         <Grid item>
@@ -78,27 +71,7 @@ class AdminLogin extends React.Component {
                             <TextField  onChange={this.onChange}   name="password" margin="normal" variant="outlined" label="Password" type="password" fullWidth required />
                         </Grid>
                     </Grid>
-                    <Grid container style={{marginTop:'5vh'}}>
-                        <Grid item>
-                            <FormControlLabel control={
-                                <Checkbox
-                                    color="secondary"
-                                />
-                            } label="Remember me" />
-                        </Grid>
-                    </Grid>
-                    <Grid container justifyContent="center">
-                        <Grid item>
-                            <Link href="signup">
-                                    create new account
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link href="forgotPassword">
-                                    forgotpassword
-                            </Link>
-                        </Grid>
-                    </Grid>
+                    
                     <Grid container justifyContent="center" style={{ marginTop: '2%' }}>
                         <Grid item md={4}>
 

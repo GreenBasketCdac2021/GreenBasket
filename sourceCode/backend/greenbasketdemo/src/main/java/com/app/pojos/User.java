@@ -18,8 +18,8 @@ import lombok.ToString;
 @Table(name="users")
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
+//@Getter
+//@Setter
 @ToString
 public class User extends BaseEntity { 
 	@Column(length=20)
@@ -36,6 +36,42 @@ public class User extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	@Column(name="user_role",length = 20)	
 	private UserRole role;
+	public String getfName() {
+		return fName;
+	}
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public UserRole getRole() {
+		return role;
+	}
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
 	
 	//we need to do mapping one to many
 	

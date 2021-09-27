@@ -4,9 +4,19 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import { Container } from 'react-bootstrap';
+import store from '../../../../store';
 class SingleProduct extends React.Component{
-    
-    sayHello=(obj)=>console.log(obj)
+    constructor(props){
+        super(props);
+        this.state={
+            reduxStore:store.getState().reduxStore,
+        }
+    }
+    sayHello(obj){
+        if(!this.state.reduxStore.auth.login_status)
+            window.location="/login"
+        console.log(obj);
+    }
 
     render(){
         return(
