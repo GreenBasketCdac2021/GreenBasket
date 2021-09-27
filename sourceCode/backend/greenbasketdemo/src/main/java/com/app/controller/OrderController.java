@@ -56,7 +56,7 @@ public class OrderController {
 	public ResponseEntity<?> placeOrder(@RequestParam Long customerId, @RequestParam Long paymentMethodId,@RequestParam String email){
 		Customer customer = customerService.fetchCustomerByEmailId(email);
 		User user = userService.fetchUserByRole(UserRole.DELIVERYBOY);
-		String message ="Hi "+customer.getFName()+ ", <br> Your order is Confirmed on "+java.time.LocalDateTime.now()+" and Out for delivery. Delivery boy name:"+user.getFName();
+		String message ="Hi "+customer.getfName()+ ", <br> Your order is Confirmed on "+java.time.LocalDateTime.now()+" and Out for delivery. Delivery boy name:"+user.getfName();
 		if(orderService.placeOrder(customerId,paymentMethodId)) {
 			new MailServiceImp().sendMail(customer.getEmail(),"GreenBasket_OrderConfirmation",message);
 			return new ResponseEntity<String>("Order Placed",HttpStatus.OK);

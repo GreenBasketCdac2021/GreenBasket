@@ -22,7 +22,6 @@ class UpdateProduct extends Component {
     constructor(props){
         super(props);
         this.state={
-            reduxStore:store.getState().reduxStore,
             product:store.getState().reduxStore["products"].filter(e=> e.id===this.props.location.state)[0],
             productName:"",
             productDescription:"",
@@ -34,17 +33,35 @@ class UpdateProduct extends Component {
             },
             type:"FRUITS"
         }
-        this.onSubmit=this.onSubmit.bind(this);
+        
         this.onChange=this.onChange.bind(this);
+        this.onSubmit=this.onSubmit.bind(this);
     }
-    onChange(e){
-        this.setState({[e.target.name]:e.target.value});
-    }
+    onChange=e=>this.setState({[e.target.name]:e.target.value})
+    
     onSubmit(e){
         e.preventDefault();
-        console.log(this.state)
-        // this.props.addProduct(temp);
-        // window.location.replace("/")
+        var id;
+        if(this.state.type==="FRUITS")
+            id=1;
+        if(this.state.type==="VEGETABLES")
+            id=2;
+        if(this.state.type==="SPROUTS")
+            id=3;
+        var reqBody={
+            id:this.state.product.id,
+            productName:this.state.productName,
+            productDescription:this.state.productDescription,
+            unitPrice:this.state.unitPrice,
+            stock:this.state.stock,
+            categoryName:{
+                id:id,
+                categoryName:this.state.type
+            }
+        }
+        console.log(reqBody);
+        this.props.updateProduct(reqBody);
+        window.location.replace("/")
     }
     render(){
         return (
@@ -68,13 +85,13 @@ class UpdateProduct extends Component {
                             <TextField placeholder={this.state.product.productDescription} onChange={this.onChange} name="productDescription" margin="normal" variant="filled" label="Product Decription" type="text" fullWidth required/>
                         </Grid>
                         <Grid item md={6} sm={6} xs={6}>
-                        <TextField value={this.state.product.unitPrice} onChange={this.onChange} name="unitPrice" margin="normal" variant="filled" label="Unit Price/KG" type="number" min="1" fullWidth required/>
+                        <TextField placeholder={this.state.product.unitPrice.toString()} onChange={this.onChange} name="unitPrice" margin="normal" variant="filled" label="Unit Price/KG" type="number" min="1" fullWidth required/>
                         </Grid>
                         <Grid item md={6} sm={6} xs={6}>
-                            <TextField value={this.state.product.stock} onChange={this.onChange} name="stock" margin="normal" variant="filled" label="Stock" type="number" min="0" fullWidth required/>
+                            <TextField placeholder={this.state.product.stock.toString()} onChange={this.onChange} name="stock" margin="normal" variant="filled" label="Stock" type="number" min="0" fullWidth required/>
                         </Grid>
                         <Grid item md={12} sm={12} xs={12} >
-                            <Form.Select value={this.state.product.categoryName.categoryName} onChange={this.onChange} name="type">
+                            <Form.Select  onChange={this.onChange} name="type">
                                 <option value="FRUITS">Fruits</option>
                                 <option value="VEGETABLES">Vegetables</option>
                                 <option value="SPROUTS">Sprouts</option>

@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,LOGIN_ADMIN_AUTH,RESET_STORE,ADD_PRODUCT_TO_CART,DELETE_PRODUCT_BY_ID} from "./types";
+import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,LOGIN_ADMIN_AUTH,RESET_STORE,ADD_PRODUCT_TO_CART,DELETE_PRODUCT_BY_ID,UPDATE_PRODUCT} from "./types";
 import axios from 'axios';
 
 export const fetchProducts=()=>dispatch=>{
@@ -28,13 +28,10 @@ export const addProduct=(reqBody)=>dispatch=>{
 
 export const updateProduct=(reqBody)=>dispatch=>{
     axios.post("http://localhost:8080/user/product/",reqBody)
-    .then(auth=>{
-        console.log(auth);
+    .then(data=>{
         return dispatch({
-            type:ADD_PRODUCT,
-            auth:auth.data
+            type:UPDATE_PRODUCT
         })}).catch((err) => {
-            console.log("ERROR")
         console.error(err);
     })
 }
@@ -100,7 +97,7 @@ export const deleteProductByID=(product_id)=>dispatch=>{
             type:DELETE_PRODUCT_BY_ID,
         })}
         else{
-            alert("Product Not Found")
+            alert("Product Removed")
         }
         
     }).catch((err) => {
