@@ -9,9 +9,9 @@ import Fruits from './fruits.jpg';
 import Sprouts from './sprouts.png';
 
 const category={
-    fruit:{title:"Fruits",text:"a",link:"fruits"},
-    vegetables:{title:"Vegetables",text:"B",link:"vegetables"},
-    sprouts:{title:"Sprouts",text:"C",link:"sprouts"}
+    fruit:{title:"Fruits",text:"",link:"fruits"},
+    vegetables:{title:"Vegetables",text:" ",link:"vegetables"},
+    sprouts:{title:"Sprouts",text:" ",link:"sprouts"}
 }
 class MainBody extends React.Component{
     render(){

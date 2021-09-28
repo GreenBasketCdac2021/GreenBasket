@@ -22,6 +22,7 @@ import Vegetables from './Components/MainBody/Customer/Category/Vegetables';
 import AllProduct from './Components/MainBody/Customer/Category/AllProduct';
 import Sprouts from './Components/MainBody/Customer/Category/Sprouts';
 import NotFound from './Components/NotFound';
+import Orders from './Components/MainBody/Customer/Orders';
 class App extends React.Component {
   render(){
     return (
@@ -48,6 +49,7 @@ class App extends React.Component {
                 <Route path="/vegetables" exact component={Vegetables}/>
                 <Route path="/sprouts" exact component={Sprouts}/>
                 <Route path="/all" exact component={AllProduct}/>
+                <Route path="/orders" exact component={Orders}/>
 
 
                 

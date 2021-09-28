@@ -17,7 +17,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 
-    const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         height: '100vh',
         background:'#364755'
@@ -41,13 +41,13 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
         backgroundColor: theme.palette.success.dark,
     },
     form: {
-        width: '100%', // Fix IE 11 issue.
+        width: '100%', 
         marginTop: theme.spacing(1),
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
-    }));
+}));
 
     export default function SingUp() {
     const classes = useStyles();
@@ -73,6 +73,11 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
         event.preventDefault();
     };
     
+    const onClick=event=>{
+        event.preventDefault();
+        console.log(this.state)
+    }
+
     return (
         <Grid container component="main" className={classes.root} style={{height:'100vh',width:'100vw', background: 'linear-gradient(135deg, #364755 50%, #182835 50%)',position:'absolute',top:'0',left:'0'}}>
         <CssBaseline />
@@ -157,7 +162,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
                 <Grid container justify="center" style={{ marginTop: '2%' }}>
                     <Grid item md={4} fullWidth>
 
-                        <Button fullWidth type="submit" variant="contained" style={{ textTransform: "none", backgroundColor:"#fec14e",color:"white",minWidth:"100px",fontWeight:'bolder',fontSize:'medium',borderRadius:'5pt'}}>SignUp</Button>
+                        <Button onClick={onClick} fullWidth type="submit" variant="contained" style={{ textTransform: "none", backgroundColor:"#fec14e",color:"white",minWidth:"100px",fontWeight:'bolder',fontSize:'medium',borderRadius:'5pt'}}>SignUp</Button>
                         
                     </Grid>
                 </Grid>
@@ -168,4 +173,4 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
         <Grid item lg={4} md={1}  sm={1}/>
         </Grid>
     );
-    }
+}
