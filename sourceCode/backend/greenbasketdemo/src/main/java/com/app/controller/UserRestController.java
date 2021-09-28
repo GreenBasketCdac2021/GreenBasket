@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.custom_exceptions.ResourceAlreadyExists;
+import com.app.custom_exceptions.ResourceNotFoundException;
+import com.app.custom_exceptions.UnauthorizedException;
 import com.app.pojos.Category;
 import com.app.pojos.Customer;
 import com.app.pojos.ProductDetails;
@@ -45,17 +48,17 @@ public class UserRestController {
 			return new ResponseEntity<User>(u, HttpStatus.OK);
 		} else {
 
-			return new ResponseEntity<String>("invalid credentials", HttpStatus.OK);
+			throw new UnauthorizedException("Login Failed due to Invalid Credentials");
 		}
 	}
 
 	@PostMapping("/register")
 	public ResponseEntity<?> registerNewUser(@RequestBody User user) {
-		String tempEmaiId = user.getEmail();
-		if (tempEmaiId != null && !"".equals(tempEmaiId)) {
-			User obj = userService.fetchUserByEmailId(tempEmaiId);
+		String tempEmailId = user.getEmail();
+		if (tempEmailId != null && !"".equals(tempEmailId)) {
+			User obj = userService.fetchUserByEmailId(tempEmailId);
 			if (obj != null) {
-				return new ResponseEntity<String>("User with emailId " + tempEmaiId + " already exist", HttpStatus.OK);
+				throw new ResourceAlreadyExists("User with emailId " + tempEmailId +" already exist");
 			}
 		}
 		User tempUser = null;
@@ -70,7 +73,13 @@ public class UserRestController {
 	
 	@GetMapping("/customer/{customerId}")
 	public ResponseEntity<Customer> getCustomerById(@PathVariable long customerId){
-		return ResponseEntity.ok(userService.getCustomerById(customerId));
+		Customer customer=userService.getCustomerById(customerId);
+		if(customer==null) {
+			throw new ResourceNotFoundException("Product Not Found...!");
+		}else
+		{
+			return new ResponseEntity<>(customer,HttpStatus.OK);
+		}
 	}
 	
 	@GetMapping("/product")
@@ -80,24 +89,49 @@ public class UserRestController {
 	
 	@PostMapping("/product")
 	public ResponseEntity<?> addProduct(@RequestBody ProductDetails product){
-		return new ResponseEntity<>(userService.addNewProduct(product),HttpStatus.CREATED);
+		ProductDetails addProduct=userService.addNewProduct(product);
+		if(addProduct==null) {
+			throw new ResourceAlreadyExists("Product Already Existed...!");
+		}else
+		{
+			return new ResponseEntity<>(addProduct,HttpStatus.CREATED);
+		}
 	}
 	
 	@GetMapping("/product/{productId}")
 	public ResponseEntity<ProductDetails> getProductById(@PathVariable long productId){
-		return ResponseEntity.ok(userService.getProductById(productId));
+		ProductDetails product=userService.getProductById(productId);
+		if(product==null) {
+			throw new ResourceNotFoundException("Product Not Found...!");
+		}else
+		{
+			return new ResponseEntity<>(product,HttpStatus.OK);
+		}
 	}
 	
 	@PutMapping("/updateProduct")
 	public ResponseEntity<?> updateProduct(@RequestBody ProductDetails product) {
-		//ProductDetails existingProduct = userService.getProductById(pId);
-		return ResponseEntity.ok(userService.updateProduct(product));
+		ProductDetails updateProduct=userService.updateProduct(product);
+		if(updateProduct==null) {
+			throw new ResourceAlreadyExists("Updating Product Failed...!");
+		}else
+		{
+			return new ResponseEntity<>(updateProduct,HttpStatus.OK);
+		}
 	}
 	
 	@DeleteMapping("/deleteProduct/{ppid}")
 	public ResponseEntity<?> deleteProductById(@PathVariable long ppid){
-		return ResponseEntity.ok(userService.deleteProductById(ppid));
+		//
+         ProductDetails product=userService.getProductById(ppid);
 		
+		if(product==null) {
+			
+			throw new ResourceAlreadyExists("Deleting Product Failed...!");
+		}else
+		{
+			return ResponseEntity.ok(userService.deleteProductById(ppid));
+		}
 	}
 	
 	

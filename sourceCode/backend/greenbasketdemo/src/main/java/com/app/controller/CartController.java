@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.custom_exceptions.CustomException;
+import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.pojos.Cart;
 import com.app.pojos.CartItems;
 import com.app.pojos.Customer;
@@ -39,7 +41,7 @@ public class CartController {
 	public ResponseEntity<?> addProductToCart(@RequestParam Long productid, @RequestParam double quantity,@RequestParam Long custID) {
 		Cart cart = cartService.updateExistingCart(productid, quantity,custID);
 		if(cart == null)
-			return new ResponseEntity<>(new String("Cart Creation Failed"),HttpStatus.NOT_FOUND);
+			throw new CustomException("Adding Product/Cart Creation Failed...!");
 		else
 			return new ResponseEntity<>(new String("Cart created"),HttpStatus.CREATED);
 	}
@@ -47,7 +49,7 @@ public class CartController {
 	@PutMapping("/updateCart")
 	public ResponseEntity<?> updateCart(@RequestParam Long productid, @RequestParam double quantity,@RequestParam Long custID) {
 		if(cartService.updateExistingCart(productid, quantity,custID) == null)
-			return new ResponseEntity<>(new String("Cart updation Failed"),HttpStatus.FAILED_DEPENDENCY);
+			throw new CustomException("Updating Product Quantity Failed...!");
 		else
 			return new ResponseEntity<>(new String("Cart updated"),HttpStatus.OK);
 	}
@@ -55,7 +57,7 @@ public class CartController {
 	@PostMapping("/deleteproduct")
 	public ResponseEntity<?> deleteProductFromCart(@RequestParam Long productid,@RequestParam Long custID) {
 		if(!cartService.deleteFormExistingCard(productid, custID))
-			return new ResponseEntity<>(new String("Cart deletion Failed"),HttpStatus.FAILED_DEPENDENCY);
+			throw new CustomException("Deleting Product from Cart Failed...!");
 		else
 			return new ResponseEntity<>(new String("Cart deleted"),HttpStatus.CREATED);
 	}
@@ -68,7 +70,7 @@ public class CartController {
 			List<CartItems> items =cart.getCartItems(); 
 			return new ResponseEntity<>(items,HttpStatus.OK);
 		}else {
-			return new ResponseEntity<String>("Cart Not found",HttpStatus.EXPECTATION_FAILED);
+			throw new ResourceNotFoundException("Cart Not Found");
 		}
 	
 	}

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.custom_exceptions.ResourceAlreadyExists;
+import com.app.custom_exceptions.ResourceNotFoundException;
+import com.app.custom_exceptions.UnauthorizedException;
 import com.app.dao.CustomerRepository;
 import com.app.pojos.Customer;
 import com.app.service.ICustomerService;
@@ -38,7 +41,7 @@ public class CustomerRestController {
 		if(u!=null) {
 			return new ResponseEntity<Customer>(u,HttpStatus.OK);
 		}else {
-			return new ResponseEntity<String>("{invalid credentials}",HttpStatus.OK);
+			throw new UnauthorizedException("Customer Login Failed due to Invalid Credentials");
 		}
 	}
 
@@ -49,7 +52,7 @@ public class CustomerRestController {
 		if (tempEmailId != null && !"".equals(tempEmailId)) { 
 			Customer obj = customerService.fetchCustomerByEmailId(tempEmailId);
 			if(obj != null) { 
-				return new ResponseEntity<String>("User with emailId" + tempEmailId +" already exist",HttpStatus.OK); 
+				throw new ResourceAlreadyExists("User with emailId " + tempEmailId +" already exist"); 
 			} 
 		} 
 		Customer tempUser = null; 
@@ -64,7 +67,7 @@ public class CustomerRestController {
 			new MailServiceImp().sendMail(obj.getEmail(),"GreenBasket Password",message);
 			return new ResponseEntity<String>("password mail sent",HttpStatus.OK);
 		}
-		return new ResponseEntity<String>("user not found",HttpStatus.OK);
+		throw new ResourceNotFoundException("User Not Found...!");
 	}
 	
 //	@PostMapping("/sendotp")

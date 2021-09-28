@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.custom_exceptions.CustomException;
 import com.app.service.IMailService;
 
 @RestController
@@ -24,7 +25,7 @@ public class EmailController {
 		if(mailService.sendMail(to, subject, message))
 			return new ResponseEntity<>(new String("Mail Sent"),HttpStatus.OK);
 		else
-			return new ResponseEntity<>(new String("Mail Send Failed"),HttpStatus.NOT_FOUND);
+			throw new CustomException("Mail Not Send");
 	}
 
 }
