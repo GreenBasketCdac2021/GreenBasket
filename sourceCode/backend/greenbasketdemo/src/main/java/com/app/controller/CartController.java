@@ -1,6 +1,6 @@
 package com.app.controller;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dao.CustomerRepository;
 import com.app.pojos.Cart;
-import com.app.pojos.Customer;
+import com.app.pojos.CartItems;
 import com.app.service.ICartService;
 import com.app.service.ICustomerService;
 
@@ -70,4 +70,19 @@ public class CartController {
 		else
 			return new ResponseEntity<>(new String("Cart deleted"),HttpStatus.CREATED);
 	}
+	
+	
+	@GetMapping("/getcartbycustomerid")
+	public ResponseEntity<?> getCartByCustomerId(@RequestParam Long customerId){
+		Cart cart = cartService.getCutomersCart(customerId);
+		if(cart != null) {
+			List<CartItems> items =cart.getCartItems(); 
+			return new ResponseEntity<>(items,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<String>("Cart Not found",HttpStatus.EXPECTATION_FAILED);
+		}
+	}
+	
+	
+	
 }

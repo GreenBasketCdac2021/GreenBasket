@@ -10,6 +10,6 @@ public interface ICartService {
 	public Cart updateExistingCart(Long productid,double quantity,Long custID);
 	public Boolean deleteFormExistingCard(Long productid, Long custID);
 
-	public Cart getCutomersCart(Long custID);
+	public Cart getCutomersCart(Long customerId);
 
 }

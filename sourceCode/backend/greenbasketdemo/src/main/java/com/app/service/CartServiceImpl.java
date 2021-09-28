@@ -16,6 +16,7 @@ import com.app.dao.UserRepository;
 import com.app.pojos.Cart;
 import com.app.pojos.CartItems;
 import com.app.pojos.Customer;
+import com.app.pojos.Orders;
 import com.app.pojos.ProductDetails;
 
 @Service
@@ -129,12 +130,11 @@ public class CartServiceImpl implements ICartService {
 
 		return false;
 	}
-
-
+	
+	
 	@Override
-	public Cart getCutomersCart(Long custID) {
-		// TODO Auto-generated method stub
-		return null;
+	public Cart getCutomersCart(Long customerId) {
+		return cartRepo.findByCustomerId(customerId);
 	}
 
 }
