@@ -12,7 +12,7 @@ class SingleProduct extends React.Component{
             reduxStore:store.getState().reduxStore,
         }
     }
-    sayHello(obj){
+    onClick(obj){
         if(!this.state.reduxStore.auth.login_status)
             window.location="/login"
         var reqBody={
@@ -21,6 +21,7 @@ class SingleProduct extends React.Component{
             custID:this.state.reduxStore.auth.object.id
         }
         console.log(reqBody);
+        //this.props.();
     }
 
     render(){
@@ -35,7 +36,7 @@ class SingleProduct extends React.Component{
                             <b>   Price: {this.props.object.unitPrice}/KG</b>
                         </Typography>
                         <Container className="d-flex justify-content-around mt-2">
-                            <button onClick={this.sayHello.bind(this,this.props.object)} className="btn btn-primary">
+                            <button onClick={this.onClick.bind(this,this.props.object)} className="btn btn-primary">
                                 Add to cart
                             </button>
                             {/* <Button className="btn btn-danger">

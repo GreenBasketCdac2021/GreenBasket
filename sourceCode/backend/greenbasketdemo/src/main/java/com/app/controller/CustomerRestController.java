@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +44,7 @@ public class CustomerRestController {
 
 	@PostMapping("/register")
 	public ResponseEntity<?> registerNewUser(@RequestBody Customer customer){
+		customer.setReg_date(LocalDate.now());
 		String tempEmailId = customer.getEmail(); 
 		if (tempEmailId != null && !"".equals(tempEmailId)) { 
 			Customer obj = customerService.fetchCustomerByEmailId(tempEmailId);

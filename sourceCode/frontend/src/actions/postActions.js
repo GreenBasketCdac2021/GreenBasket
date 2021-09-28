@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,LOGIN_ADMIN_AUTH,RESET_STORE,ADD_PRODUCT_TO_CART,DELETE_PRODUCT_BY_ID,UPDATE_PRODUCT} from "./types";
+import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,LOGIN_ADMIN_AUTH,RESET_STORE,ADD_PRODUCT_TO_CART,DELETE_PRODUCT_BY_ID,UPDATE_PRODUCT,ADD_PRODUCT_TO_CART} from "./types";
 import axios from 'axios';
 
 export const fetchProducts=()=>dispatch=>{
@@ -25,6 +25,7 @@ export const addProduct=(reqBody)=>dispatch=>{
         console.error(err);
     })
 }
+
 
 export const updateProduct=(reqBody)=>dispatch=>{
     axios.post("http://localhost:8080/user/product/",reqBody)
@@ -89,7 +90,6 @@ export const resetStore=()=>dispatch=>dispatch({
 
 
 export const deleteProductByID=(product_id)=>dispatch=>{
-    console.log('http://localhost:8080/user/deleteProduct/'+product_id)
     axios.delete('http://localhost:8080/user/deleteProduct/'+product_id)
     .then(product=>{
             if(typeof product===typeof ""){
@@ -116,6 +116,18 @@ export const addProductToCart=(product)=>dispatch=>{
         })
         
     }).catch((err) => {
+        console.error(err);
+    })
+}
+
+export const addToCart=(reqBody)=>dispatch=>{
+    axios.post("http://localhost:8080/cart/addproduct",reqBody)
+    .then(auth=>{
+        return dispatch({
+            type:ADD_PRODUCT_TO_CART,
+            auth:auth.data
+        })}).catch((err) => {
+            console.log("ERROR")
         console.error(err);
     })
 }

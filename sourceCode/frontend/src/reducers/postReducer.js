@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,RESET_STORE,CUSTOMER_CART,LOGIN_ADMIN_AUTH,DELETE_PRODUCT_BY_ID,UPDATE_PRODUCT } from "../actions/types";
+import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,RESET_STORE,CUSTOMER_CART,LOGIN_ADMIN_AUTH,DELETE_PRODUCT_BY_ID,UPDATE_PRODUCT, ADD_PRODUCT_TO_CART } from "../actions/types";
 
 const initialState={
     auth:{
@@ -45,6 +45,8 @@ export default function postReducer(state=initialState,action){
                         role:role
                     },
                 }
+        case ADD_PRODUCT_TO_CART:
+            return {...state}
         case DELETE_PRODUCT_BY_ID:
             return {...state}
         case UPDATE_PRODUCT:
