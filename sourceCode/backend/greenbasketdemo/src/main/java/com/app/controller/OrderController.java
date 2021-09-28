@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dao.OrderRepository;
 import com.app.dao.UserRepository;
+import com.app.pojos.CartItems;
 import com.app.pojos.Customer;
+import com.app.pojos.OrderItems;
 import com.app.pojos.Orders;
 import com.app.pojos.User;
 import com.app.pojos.UserRole;
