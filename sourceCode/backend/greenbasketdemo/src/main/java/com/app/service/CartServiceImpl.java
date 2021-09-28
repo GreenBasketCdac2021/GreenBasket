@@ -125,6 +125,16 @@ public class CartServiceImpl implements ICartService {
 
 		return false;
 	}
+<<<<<<< HEAD
+=======
+
+
+	@Override
+	public Cart getCutomersCart(Long custID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+>>>>>>> parent of cd632fb (code after cartByCustomerId method)
 
 }
 

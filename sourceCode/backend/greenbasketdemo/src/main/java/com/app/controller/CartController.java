@@ -1,5 +1,10 @@
 package com.app.controller;
 
+<<<<<<< HEAD
+=======
+import java.util.Optional;
+
+>>>>>>> parent of cd632fb (code after cartByCustomerId method)
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.pojos.Cart;
+<<<<<<< HEAD
+=======
+import com.app.pojos.Customer;
+>>>>>>> parent of cd632fb (code after cartByCustomerId method)
 import com.app.service.ICartService;
 
 @RestController
