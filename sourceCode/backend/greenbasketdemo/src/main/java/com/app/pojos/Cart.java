@@ -44,7 +44,7 @@ public class Cart extends BaseEntity {
 	
 	//many to one mapping to join customer table
 	@JsonIgnoreProperties("cart")
-	@OneToOne//(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="customer_id")
 	private Customer customerDetails;
 	
