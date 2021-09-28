@@ -72,8 +72,9 @@ public class CartServiceImpl implements ICartService {
 
 	@Override
 	public Cart updateExistingCart(Long productid, double quantity,Long custID) {
+		//Cart cart= customerRepo.findByEmail("ankushdharkar01451@gmail.com").getCart();
 		Cart cart= cartRepo.findByCustomerId(custID);
-
+		//System.out.println(customerRepo.findByEmail("ankushdharkar01451@gmail.com"));
 		ProductDetails pt = productRepo.findById(productid).orElseThrow( () -> new IllegalStateException("product not found"));
 		Boolean productExistInTheCart = false;
 		if(cart != null) {
@@ -82,8 +83,9 @@ public class CartServiceImpl implements ICartService {
 				if(c_items.getProducts().equals(pt)) {
 					productExistInTheCart =true;
 					c_items.setQuantity(c_items.getQuantity()+quantity);
-					c_items.setSubTotal(c_items.getSubTotal()+(quantity*pt.getUnitPrice()));
+					c_items.setSubTotal(c_items.getQuantity()*pt.getUnitPrice());
 					cart.setCartItems(items);
+					//System.out.println(cart);
 					return cartRepo.save(cart);
 				}
 			}
@@ -94,7 +96,9 @@ public class CartServiceImpl implements ICartService {
 			CartItems cartItem = new CartItems();
 			cartItem.setQuantity(quantity);
 			//cartItem.setUnitPrice(unitPrice);
+			cartItem.setSubTotal(cartItem.getQuantity()*pt.getUnitPrice());
 			cartItem.setProducts(pt);
+			cartItem.setCart(cart);
 			cart.getCartItems().add(cartItem);
 			return cartRepo.saveAndFlush(cart);
 		}

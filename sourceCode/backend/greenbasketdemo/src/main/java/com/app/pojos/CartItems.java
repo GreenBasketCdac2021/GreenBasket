@@ -32,7 +32,7 @@ public class CartItems extends BaseEntity {
 	@JoinColumn(name = "product_id")
 	private ProductDetails products;
 
-	// many to one mapping to join customer table
+	// many to one mapping to join cart table
 	@JsonIgnoreProperties("cartItems")
 	@ManyToOne
 	@JoinColumn(name = "cart_id")

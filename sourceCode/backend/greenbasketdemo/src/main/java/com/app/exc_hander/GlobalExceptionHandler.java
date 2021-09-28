@@ -25,7 +25,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<?> handleRuntimeException(RuntimeException e){
 		System.out.println("in handle runtime exception"+e);
-		ErrorResponse resp=new ErrorResponse("Adding User failed !!",LocalDateTime.now());
+		ErrorResponse resp=new ErrorResponse("Failed !!",LocalDateTime.now());
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resp);
 	}
 	
