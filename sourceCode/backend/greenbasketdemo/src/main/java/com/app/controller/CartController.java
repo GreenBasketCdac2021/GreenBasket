@@ -1,5 +1,10 @@
 package com.app.controller;
 
+<<<<<<< HEAD
+=======
+import java.util.List;
+
+>>>>>>> cd632fbd3f3bfc6e29ed0d9c2c27433083ef3abc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.pojos.Cart;
+<<<<<<< HEAD
+=======
+import com.app.pojos.CartItems;
+>>>>>>> cd632fbd3f3bfc6e29ed0d9c2c27433083ef3abc
 import com.app.service.ICartService;
 
 @RestController
@@ -50,4 +59,19 @@ public class CartController {
 		else
 			return new ResponseEntity<>(new String("Cart deleted"),HttpStatus.CREATED);
 	}
+	
+	
+	@GetMapping("/getcartbycustomerid")
+	public ResponseEntity<?> getCartByCustomerId(@RequestParam Long customerId){
+		Cart cart = cartService.getCutomersCart(customerId);
+		if(cart != null) {
+			List<CartItems> items =cart.getCartItems(); 
+			return new ResponseEntity<>(items,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<String>("Cart Not found",HttpStatus.EXPECTATION_FAILED);
+		}
+	}
+	
+	
+	
 }
