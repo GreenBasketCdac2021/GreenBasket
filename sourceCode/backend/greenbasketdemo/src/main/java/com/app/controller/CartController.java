@@ -64,8 +64,8 @@ public class CartController {
 	}
 	
 	@PostMapping("/deleteproduct")
-	public ResponseEntity<?> deleteProductFromCart(@RequestParam Long productid, @RequestParam double quantity,@RequestParam Long custID) {
-		if(!cartService.deleteFormExistingCard(productid, quantity,custID))
+	public ResponseEntity<?> deleteProductFromCart(@RequestParam Long productid,@RequestParam Long custID) {
+		if(!cartService.deleteFormExistingCard(productid,custID))
 			return new ResponseEntity<>(new String("Cart deletion Failed"),HttpStatus.FAILED_DEPENDENCY);
 		else
 			return new ResponseEntity<>(new String("Cart deleted"),HttpStatus.CREATED);

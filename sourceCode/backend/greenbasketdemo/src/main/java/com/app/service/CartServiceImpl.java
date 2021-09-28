@@ -107,7 +107,7 @@ public class CartServiceImpl implements ICartService {
 
 
 	@Override
-	public Boolean deleteFormExistingCard(Long productid, double quantity,Long custID) {
+	public Boolean deleteFormExistingCard(Long productid,Long custID) {
 		Cart cart= cartRepo.findByCustomerId(custID);
 
 		ProductDetails pt = productRepo.findById(productid).orElseThrow( () -> new IllegalStateException("product not found"));
