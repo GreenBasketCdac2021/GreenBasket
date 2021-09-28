@@ -14,6 +14,9 @@ public interface ICartService {
 	public Boolean deleteFormExistingCard(Long productid, Long custID);
 
 	public Cart getCutomersCart(Long custID);
+<<<<<<< HEAD
+>>>>>>> parent of cd632fb (code after cartByCustomerId method)
+=======
 >>>>>>> parent of cd632fb (code after cartByCustomerId method)
 
 }

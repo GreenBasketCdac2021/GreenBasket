@@ -126,7 +126,10 @@ public class CartServiceImpl implements ICartService {
 		return false;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of cd632fb (code after cartByCustomerId method)
 
 
 	@Override

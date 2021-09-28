@@ -1,7 +1,10 @@
 package com.app.controller;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of cd632fb (code after cartByCustomerId method)
 import java.util.Optional;
 
 >>>>>>> parent of cd632fb (code after cartByCustomerId method)
@@ -17,6 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.pojos.Cart;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import com.app.pojos.Customer;
+>>>>>>> parent of cd632fb (code after cartByCustomerId method)
 =======
 import com.app.pojos.Customer;
 >>>>>>> parent of cd632fb (code after cartByCustomerId method)
