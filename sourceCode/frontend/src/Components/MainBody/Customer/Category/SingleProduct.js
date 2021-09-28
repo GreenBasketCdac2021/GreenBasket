@@ -15,7 +15,12 @@ class SingleProduct extends React.Component{
     sayHello(obj){
         if(!this.state.reduxStore.auth.login_status)
             window.location="/login"
-        console.log(obj);
+        var reqBody={
+            productid:obj.id,
+            quantity:1,
+            custID:this.state.reduxStore.auth.object.id
+        }
+        console.log(reqBody);
     }
 
     render(){

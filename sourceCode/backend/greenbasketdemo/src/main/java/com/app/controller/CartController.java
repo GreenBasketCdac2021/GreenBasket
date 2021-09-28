@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,14 @@ public class CartController {
 	public	CartController(){
 		 System.out.println("in constr of "+getClass().getName());
 	}
-	
+	@GetMapping
+	public ResponseEntity<?> getCustomerCart(@RequestParam Long custID) {
+		Cart cart = cartService.getCutomersCart(custID);
+		if(cart == null)
+			return new ResponseEntity<>(new String("Cart is Empty"),HttpStatus.NOT_FOUND);
+		else
+			return new ResponseEntity<>(cart,HttpStatus.CREATED);
+	}
 	@PostMapping("/addproduct")
 	public ResponseEntity<?> addProductToCart(@RequestParam Long productid, @RequestParam double quantity,@RequestParam Long custID) {
 		Cart cart = cartService.addCartAndProductFirstTime(productid, quantity,custID);

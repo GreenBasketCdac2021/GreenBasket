@@ -126,5 +126,12 @@ public class CartServiceImpl implements ICartService {
 		return false;
 	}
 
+
+	@Override
+	public Cart getCutomersCart(Long custID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
 
