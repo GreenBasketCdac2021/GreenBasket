@@ -22,52 +22,56 @@ import com.app.service.ICustomerService;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/cart")
-	
+
 public class CartController {
-	
+
 	@Autowired
 	ICartService cartService;
-	
+
 	@Autowired
 	ICustomerService customerService;
-	
+
 	@Autowired
 	CustomerRepository customerRepo;
-	
-	public	CartController(){
-		 System.out.println("in constr of "+getClass().getName());
+
+	public CartController() {
+		System.out.println("in constr of " + getClass().getName());
 	}
+
 	@GetMapping
 	public ResponseEntity<?> getCustomerCart(@RequestParam Long custID) {
 		Cart cart = cartService.getCutomersCart(custID);
-		if(cart == null)
-			return new ResponseEntity<>(new String("Cart is Empty"),HttpStatus.NOT_FOUND);
+		if (cart == null)
+			return new ResponseEntity<>(new String("Cart is Empty"), HttpStatus.NOT_FOUND);
 		else
-			return new ResponseEntity<>(cart,HttpStatus.CREATED);
+			return new ResponseEntity<>(cart, HttpStatus.CREATED);
 	}
+
 	@PostMapping("/addproduct")
-	public ResponseEntity<?> addProductToCart(@RequestParam Long productid, @RequestParam double quantity,@RequestParam Long custID) {
-		
-		Cart cart =cartService.updateExistingCart(productid, quantity, custID);
-		if(cart == null)
-			return new ResponseEntity<>(new String("Cart Creation Failed"),HttpStatus.NOT_FOUND);
+	public ResponseEntity<?> addProductToCart(@RequestParam Long productid, @RequestParam double quantity,
+			@RequestParam Long custID) {
+
+		Cart cart = cartService.updateExistingCart(productid, quantity, custID);
+		if (cart == null)
+			return new ResponseEntity<>(new String("Cart Creation Failed"), HttpStatus.NOT_FOUND);
 		else
-			return new ResponseEntity<>(new String("Cart created"),HttpStatus.CREATED);
+			return new ResponseEntity<>(new String("Cart created"), HttpStatus.CREATED);
 	}
-	
+
 	@PutMapping("/updateCart")
-	public ResponseEntity<?> updateCart(@RequestParam Long productid, @RequestParam double quantity,@RequestParam Long custID) {
-		if(cartService.updateExistingCart(productid, quantity,custID) == null)
-			return new ResponseEntity<>(new String("Cart updation Failed"),HttpStatus.FAILED_DEPENDENCY);
+	public ResponseEntity<?> updateCart(@RequestParam Long productid, @RequestParam double quantity,
+			@RequestParam Long custID) {
+		if (cartService.updateExistingCart(productid, quantity, custID) == null)
+			return new ResponseEntity<>(new String("Cart updation Failed"), HttpStatus.FAILED_DEPENDENCY);
 		else
-			return new ResponseEntity<>(new String("Cart updated"),HttpStatus.OK);
+			return new ResponseEntity<>(new String("Cart updated"), HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/deleteproduct")
-	public ResponseEntity<?> deleteProductFromCart(@RequestParam Long productid,@RequestParam Long custID) {
-		if(!cartService.deleteFormExistingCard(productid,custID))
-			return new ResponseEntity<>(new String("Cart deletion Failed"),HttpStatus.FAILED_DEPENDENCY);
+	public ResponseEntity<?> deleteProductFromCart(@RequestParam Long productid, @RequestParam Long custID) {
+		if (!cartService.deleteFormExistingCard(productid, custID))
+			return new ResponseEntity<>(new String("Cart deletion Failed"), HttpStatus.FAILED_DEPENDENCY);
 		else
-			return new ResponseEntity<>(new String("Cart deleted"),HttpStatus.CREATED);
+			return new ResponseEntity<>(new String("Cart deleted"), HttpStatus.CREATED);
 	}
 }
