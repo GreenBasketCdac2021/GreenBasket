@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.custom_exceptions.CustomException;
+import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dao.OrderRepository;
 import com.app.dao.UserRepository;
 import com.app.pojos.CartItems;
@@ -63,7 +65,7 @@ public class OrderController {
 			new MailServiceImp().sendMail(customer.getEmail(),"GreenBasket_OrderConfirmation",message);
 			return new ResponseEntity<String>("Order Placed",HttpStatus.OK);
 		}else {
-			return new ResponseEntity<String>("Failed to add order",HttpStatus.EXPECTATION_FAILED);
+			throw new CustomException("Placing Order Failed..!");
 		}
 	}
 	
@@ -73,7 +75,7 @@ public class OrderController {
 		if(order != null) {
 			return new ResponseEntity<List<Orders>>(order,HttpStatus.OK);
 		}else {
-			return new ResponseEntity<String>("Order Not found",HttpStatus.EXPECTATION_FAILED);
+			throw new ResourceNotFoundException("Order is Not Found...!");
 		}
 	}
 

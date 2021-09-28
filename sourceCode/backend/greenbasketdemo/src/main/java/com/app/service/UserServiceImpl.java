@@ -1,23 +1,21 @@
 package com.app.service;
 
 import java.util.List;
-//import java.util.List;
+
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
-//import org.springframework.data.repository.query.QueryByExampleExecutor;
+
 import org.springframework.stereotype.Service;
 
-import com.app.custom_exceptions.ProductHandlingException;
-import com.app.custom_exceptions.UserHandlingException;
+import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dao.CustomerRepository;
 import com.app.dao.ProductRepository;
-//import com.app.custom_exceptions.UserHandlingException;
+
 import com.app.dao.UserRepository;
-import com.app.pojos.Category;
 import com.app.pojos.Customer;
 import com.app.pojos.ProductDetails;
 import com.app.pojos.User;
@@ -73,7 +71,7 @@ public class UserServiceImpl implements IUserService {
 		// method to get customer by Id
 		@Override
 		public Customer getCustomerById(long customerId) { 
-			return customerRepo.findById(customerId).orElseThrow(() ->new UserHandlingException("Invalid Customer Id"));
+			return customerRepo.findById(customerId).orElseThrow(() ->new ResourceNotFoundException("Invalid Customer Id"));
 		}
 		
 		@Override
@@ -90,7 +88,7 @@ public class UserServiceImpl implements IUserService {
 		@Override
 		public ProductDetails getProductById(long productId) {
 			
-			return productRepo.findById(productId).orElseThrow(() ->new ProductHandlingException("Invalid product Id"));
+			return productRepo.findById(productId).orElseThrow(() ->new ResourceNotFoundException("Invalid Product Id"));
 		}
 		
 		@Override

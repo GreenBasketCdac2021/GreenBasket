@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dao.CartRepository;
 import com.app.dao.CategoryRepository;
 import com.app.dao.CustomerRepository;
@@ -74,7 +75,7 @@ public class CartServiceImpl implements ICartService {
 	public Cart updateExistingCart(Long productid, double quantity,Long custID) {
 		Cart cart= cartRepo.findByCustomerId(custID);
 
-		ProductDetails pt = productRepo.findById(productid).orElseThrow( () -> new IllegalStateException("product not found"));
+		ProductDetails pt = productRepo.findById(productid).orElseThrow( () -> new ResourceNotFoundException("Product Not Found"));
 		Boolean productExistInTheCart = false;
 		if(cart != null) {
 			List<CartItems> items =cart.getCartItems();
@@ -110,7 +111,7 @@ public class CartServiceImpl implements ICartService {
 	public Boolean deleteFormExistingCard(Long productid, Long custID) {
 		Cart cart= cartRepo.findByCustomerId(custID);
 
-		ProductDetails pt = productRepo.findById(productid).orElseThrow( () -> new IllegalStateException("product not found"));
+		ProductDetails pt = productRepo.findById(productid).orElseThrow( () -> new ResourceNotFoundException("Product Not Found"));
 		if(cart != null) {
 			List<CartItems> items =cart.getCartItems();
 			for(CartItems c_items : items) {
