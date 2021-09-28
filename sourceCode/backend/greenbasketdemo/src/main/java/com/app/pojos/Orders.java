@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -37,7 +38,7 @@ public class Orders extends BaseEntity {
 	
 	//many to one mapping to join customer table
 	@JsonIgnoreProperties("orders")
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="customer_id")
 	private Customer customerDetails;
 		
