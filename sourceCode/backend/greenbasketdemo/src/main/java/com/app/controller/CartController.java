@@ -25,7 +25,7 @@ import com.app.pojos.Orders;
 import com.app.service.ICartService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/cart")
 	
 public class CartController {
@@ -38,7 +38,7 @@ public class CartController {
 	}
 	
 	@PostMapping("/addproduct")
-	public ResponseEntity<?> addProductToCart(@RequestParam Long productid, @RequestParam double quantity,@RequestParam Long custID) {
+	public ResponseEntity<?> addProductToCart(@RequestParam(value="productid") Long productid, @RequestParam(value="quantity") double quantity,@RequestParam(value="custID") Long custID) {
 		Cart cart = cartService.updateExistingCart(productid, quantity,custID);
 		if(cart == null)
 			throw new CustomException("Adding Product/Cart Creation Failed...!");

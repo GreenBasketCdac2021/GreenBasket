@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,LOGIN_ADMIN_AUTH,RESET_STORE,ADD_PRODUCT_TO_CART,DELETE_PRODUCT_BY_ID,UPDATE_PRODUCT,ADD_PRODUCT_TO_CART} from "./types";
+import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,LOGIN_ADMIN_AUTH,RESET_STORE,DELETE_PRODUCT_BY_ID,UPDATE_PRODUCT,ADD_PRODUCT_TO_CART,GET_CART_ITEM,PLACE_ORDER} from "./types";
 import axios from 'axios';
 
 export const fetchProducts=()=>dispatch=>{
@@ -107,27 +107,31 @@ export const deleteProductByID=(product_id)=>dispatch=>{
 
 
 
-export const addProductToCart=(product)=>dispatch=>{
-    axios.post(/**url to add product to cart */'',product)
-    .then(product=>{
-            dispatch({
-            type:ADD_PRODUCT_TO_CART,
-            cart:product.data,
-        })
-        
-    }).catch((err) => {
-        console.error(err);
-    })
-}
-
-export const addToCart=(reqBody)=>dispatch=>{
-    axios.post("http://localhost:8080/cart/addproduct",reqBody)
-    .then(auth=>{
-        return dispatch({
+export const addProductToCart=(reqBody)=>dispatch=>{
+    axios.post("http://localhost:8080/cart/addproduct?productid="+reqBody.productid+"&quantity="+reqBody.quantity+"&custID="+reqBody.custID,JSON.stringify(reqBody))
+    .then(auth=>dispatch({
             type:ADD_PRODUCT_TO_CART,
             auth:auth.data
-        })}).catch((err) => {
-            console.log("ERROR")
-        console.error(err);
-    })
+    }))
+}
+
+export const fetchCartItems=(reqBody)=>dispatch=>{
+    axios.get("http://localhost:8080/cart/getcartbycustomerid?customerId="+reqBody.customerId,reqBody)
+    .then(product=>dispatch({
+            type:GET_CART_ITEM,
+            data:product.data
+        })
+    ).catch(err =>console.error(err))
+}
+
+export const placeOrder=(reqBody)=>dispatch=>{
+    console.log(reqBody)
+    axios.post("http://localhost:8080/order/placeorder?customerId="+reqBody.customerId+"&paymentMethodId="+reqBody.paymentMethodId+"&email="+reqBody.email,reqBody)
+    .then(product=>{dispatch({
+            type:PLACE_ORDER,
+            data:product.data
+        })
+        window.location.replace("/")
+    }
+    ).catch(err =>console.error(err))
 }

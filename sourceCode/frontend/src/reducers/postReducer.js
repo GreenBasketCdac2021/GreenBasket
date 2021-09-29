@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,RESET_STORE,CUSTOMER_CART,LOGIN_ADMIN_AUTH,DELETE_PRODUCT_BY_ID,UPDATE_PRODUCT, ADD_PRODUCT_TO_CART } from "../actions/types";
+import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,RESET_STORE,CUSTOMER_CART,LOGIN_ADMIN_AUTH,DELETE_PRODUCT_BY_ID,UPDATE_PRODUCT, ADD_PRODUCT_TO_CART,GET_CART_ITEM } from "../actions/types";
 
 const initialState={
     auth:{
@@ -9,7 +9,8 @@ const initialState={
     
     products:[],
     product:{},
-    cart:[]
+    cart:[],
+    cartItems:[]
 }
 export default function postReducer(state=initialState,action){
     switch(action.type){
@@ -46,7 +47,17 @@ export default function postReducer(state=initialState,action){
                     },
                 }
         case ADD_PRODUCT_TO_CART:
-            return {...state}
+            var newArray=state.cartItems
+            newArray.push(action.data)
+            return {
+                ...state,
+                cartItems:newArray
+            }
+        case GET_CART_ITEM:
+            return {
+                ...state,
+                cartItems:action.data
+            }
         case DELETE_PRODUCT_BY_ID:
             return {...state}
         case UPDATE_PRODUCT:

@@ -5,6 +5,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import { Container } from 'react-bootstrap';
 import store from '../../../../store';
+import {addProductToCart} from '../../../../actions/postActions';
+import { connect } from 'react-redux';
 class SingleProduct extends React.Component{
     constructor(props){
         super(props);
@@ -16,12 +18,13 @@ class SingleProduct extends React.Component{
         if(!this.state.reduxStore.auth.login_status)
             window.location="/login"
         var reqBody={
-            productid:obj.id,
-            quantity:1,
-            custID:this.state.reduxStore.auth.object.id
+            "productid":obj.id,
+            "quantity":1,
+            "custID":this.state.reduxStore.auth.object.id
         }
-        console.log(reqBody);
-        //this.props.();
+        console.log("Before");
+        this.props.addProductToCart(reqBody);
+        console.log("after");
     }
 
     render(){
@@ -49,4 +52,10 @@ class SingleProduct extends React.Component{
         );
     }
 }
-export default SingleProduct;
+
+
+const mapStateToProps =state=>({
+    products:state.reduxStore.products
+})
+
+export default connect(mapStateToProps,{addProductToCart})(SingleProduct);

@@ -17,6 +17,7 @@ import React from 'react';
 import store from './store';
 import Fruits from './Components/MainBody/Customer/Category/Fruits';
 import AddProduct from './Components/MainBody/Admin/AddProduct';
+import PlaceOrder from './Components/Cart/PlaceOrder';
 import UpdateProduct from './Components/MainBody/Admin/UpdateProduct';
 import Vegetables from './Components/MainBody/Customer/Category/Vegetables';
 import AllProduct from './Components/MainBody/Customer/Category/AllProduct';
@@ -54,7 +55,7 @@ class App extends React.Component {
 
                 
                 <Route path="/cart" exact component={Cart}/>
-                
+                <Route path="/buyCart" exact component={PlaceOrder}/>
                 {/**contact */}
                 <Route path="/contact" exact component={Contact}/>
                 
