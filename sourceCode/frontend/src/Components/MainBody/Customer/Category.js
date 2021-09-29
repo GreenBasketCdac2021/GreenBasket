@@ -6,14 +6,14 @@ class Category extends React.Component{
     render(){
         return (
             <Grid item md ={4}>
-                <Card style={{margin:"5vw",  alignItems: "center",justifyContent: "center",background:"#388"}} >
+                <Card style={{margin:"5vw",  alignItems: "center",justifyContent: "center",background:"#696"}} >
                     <Card.Img variant="top" src={this.props.imgSrc}  style={{width:"70%",height:'18vh',marginTop:"20px"}} alt={this.props.title}/>
-                    <Card.Body>
+                    <Card.Body justifycontent="center">
                         <Card.Title><h2>{this.props.title}</h2></Card.Title>
                         <Card.Text>
                             {this.props.text}
                         </Card.Text>
-                        <Button variant="dark" style={{width:'10vw'}}><Link to={this.props.link} className="btn btn-sec text-success">{this.props.title}</Link></Button>
+                        <Button variant="light" ><Link to={this.props.link} className="btn btn-sec text-danger">{this.props.title}</Link></Button>
                     </Card.Body>
                 </Card>
             </Grid>

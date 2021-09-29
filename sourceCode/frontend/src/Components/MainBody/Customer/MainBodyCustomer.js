@@ -16,7 +16,7 @@ const category={
 class MainBody extends React.Component{
     render(){
         return (
-            <div style={{marginLeft:'0px',width:'100%', background: 'linear-gradient(135deg, #364755 50%, #182835 50%)',position:'absolute',MarginTop:'0'}}>
+            <div style={{marginLeft:'0px',width:'100%', background: '#aaa',position:'absolute',MarginTop:'0'}}>
                 
                 {/* <div style={{width:"100%",marginTop:"10px"}}>
                     <center><img src={Photo} style={{width:'40vw'}} alt="fruit"/></center>

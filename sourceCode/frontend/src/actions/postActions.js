@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,LOGIN_ADMIN_AUTH,RESET_STORE,DELETE_PRODUCT_BY_ID,UPDATE_PRODUCT,ADD_PRODUCT_TO_CART,GET_CART_ITEM,PLACE_ORDER} from "./types";
+import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,LOGIN_ADMIN_AUTH,RESET_STORE,DELETE_PRODUCT_BY_ID,UPDATE_PRODUCT,ADD_PRODUCT_TO_CART,GET_CART_ITEM,PLACE_ORDER,REGISTER_CUSTOMER} from "./types";
 import axios from 'axios';
 
 export const fetchProducts=()=>dispatch=>{
@@ -59,7 +59,19 @@ export const checkLogin=(reqBody)=>dispatch=>{
         console.error(err);
     })
 }
-
+export const registerUser=(reqBody)=>dispatch=>{
+    axios.post("http://localhost:8080/customer/register",reqBody)
+    .then(data=>{dispatch({
+        type:REGISTER_CUSTOMER,
+        data:data.data,
+        })
+        window.location.replace("/login");
+    }
+        
+    ).catch((err) => {
+        console.error(err);
+    })
+}
 export const checkAdminLogin=(reqBody)=>dispatch=>{
     axios.post("http://localhost:8080/user/admin/login",reqBody)
     .then(auth=>{
@@ -89,19 +101,25 @@ export const resetStore=()=>dispatch=>dispatch({
 
 
 
-export const deleteProductByID=(product_id)=>dispatch=>{
-    axios.delete('http://localhost:8080/user/deleteProduct/'+product_id)
+export const deleteProductByID=(product)=>dispatch=>{
+    axios.post('http://localhost:8080/cart/deleteproduct?productid='+product.productid+"&custID="+product.custID,product)
     .then(product=>{
-            if(typeof product===typeof ""){
             dispatch({
             type:DELETE_PRODUCT_BY_ID,
-        })}
-        else{
-            alert("Product Removed")
-        }
+            data:product
+        })
         
     }).catch((err) => {
-        console.error(err);
+        console.log("A")
+        console.log(err.response.data)
+        var remove=[]
+        if(err.response.data.errorCode==="NOT_FOUND"||err.response.data.errorCode==="BAD_REQUEST")
+        dispatch({
+            type:GET_CART_ITEM,
+            data:remove
+        })
+        console.log(err.response.data);
+        console.log("Error")
     })
 }
 

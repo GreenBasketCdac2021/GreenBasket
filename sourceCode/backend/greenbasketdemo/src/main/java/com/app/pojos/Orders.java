@@ -34,7 +34,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Orders extends BaseEntity {
+public class Orders extends BaseEntity implements Cloneable {
 	
 	//many to one mapping to join customer table
 	@JsonIgnoreProperties("orders")

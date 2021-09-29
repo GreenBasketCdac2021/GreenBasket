@@ -70,31 +70,7 @@ public class CustomerRestController {
 		throw new ResourceNotFoundException("User Not Found...!");
 	}
 	
-//	@PostMapping("/sendotp")
-//	public ResponseEntity<?> sendOtp(@RequestParam String email){
-//		Customer customer = customerService.fetchCustomerByEmailId(email);
-//		String body = "Hi "+customer.getFName()+",\n your OTP is "+customer.getId()+". \n\n Thanks, \n green Basket";
-//		if(customer != null) {
-//			mailService.sendMail(customer.getEmail(), "OTP from green basket", body);
-//			return new ResponseEntity<String>("user found and mail sent",HttpStatus.OK);
-//		} else{
-//			return new ResponseEntity<String>("user Not found",HttpStatus.OK);
-//		}
-		
-	//} 
-	  
-//	}
-//	
-//	@PostMapping("/changepass")
-//	public ResponseEntity<?> changepass(@RequestParam String email,@RequestParam String password){
-//		Customer customer = customerService.fetchCustomerByEmailId(email);
-//		String body = "Hi "+customer.getFName()+",\n your OTP is "+customer.getId()+". \n\n Thanks, \n green Basket";
-//		if(customer != null) {
-//			mailService.sendMail(customer.getEmail(), "OTP from green basket", body);
-//			return new ResponseEntity<String>("user found and mail sent",HttpStatus.OK);
-//		} else{
-//			return new ResponseEntity<String>("user Not found",HttpStatus.OK);
-//		}
+
 	
 	
 }

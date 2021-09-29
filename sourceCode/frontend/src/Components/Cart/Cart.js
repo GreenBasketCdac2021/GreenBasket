@@ -5,7 +5,7 @@ import SingleCartItem from './SingleCartItem';
 import store from '../../store';
 import { fetchCartItems } from '../../actions/postActions';
 import { connect } from 'react-redux';
-
+import { Container,Col,Row } from 'react-bootstrap';
 const refreshPageOnece=()=> {
     window.location.hash = "reload";
 }
@@ -14,7 +14,8 @@ export class Cart extends React.Component {
         super(props)
         this.state={
             cart:store.getState().reduxStore.cartItems,
-            flag:false
+            flag:false,
+            Total:0,
         }
     }
     componentDidMount(){
@@ -22,27 +23,58 @@ export class Cart extends React.Component {
         this.setState({flag:true});
     }
     onClick(obj){
-        alert("a");
+        window.location.replace("/buyCart");
     }
     refreshPage() {
         window.location.hash = "reload";
     }
-
+    Total=0;
     render() {
         return (
             <div>
                 {window.onload=refreshPageOnece()}
+                {store.getState().reduxStore.auth.login_status?
+                <div>
                 <Header/>
-                <button onClick={this.refreshPage}>Click to reload!</button>
-                {this.state.flag?
-                    this.state.cart.map(
-                            (singleFruitObject, index) =>  
-                                <SingleCartItem key={index} 
+                {this.state.flag?<Container justifyContent="space-around">
+                    <Row container justifyContent="space-around" >
+                        <Col item>
+                            <b>Product Name</b>
+                        </Col>
+                        <Col item>
+                            <b>Quantity</b>
+                        </Col><Col item>
+                            <b>Sub Total</b>
+                        </Col><Col item>
+                            <b>Remove</b>
+                        </Col>
+                    </Row>
+                    {this.Total=null}
+                    {this.state.cart.map(
+                            (singleFruitObject, index) =>  {
+                                this.Total+=singleFruitObject.subTotal
+                                return <SingleCartItem key={index} 
                                     object={singleFruitObject} 
                                     spacing={2}
                                     type="FRUITS"
                                 />
-                        )
+                            }
+                        )}  
+
+                        
+                    <Row container justifyContent="space-around" className="bg-success" style={{marginTop:"2vh"}}>
+                        <Col item><b>TOTAL</b>
+                        </Col>
+                        <Col item>
+                        </Col>
+                        <Col item>
+                            <b>{this.Total}</b>
+                        </Col>
+                        <Col item>
+                        </Col>
+                    </Row>
+                        
+                        </Container>
                 :console.log("Done")}
                     <div
                         style={{
@@ -51,9 +83,12 @@ export class Cart extends React.Component {
                         alignItems: "center"
                         }}
                     >
-                        <button onClick={this.onClick.bind(this,this.props.object)} className="btn btn-primary">CheckOut</button>
+                        <button onClick={this.onClick.bind(this,this.props.object)} className="btn btn-primary mt-3">CheckOut</button>
                     </div>
                 <Footer/>
+                </div>:
+                window.location.replace("/login")
+                }
             </div>
         )
     }

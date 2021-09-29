@@ -18,8 +18,9 @@ class PlaceOrder extends Component {
             paymentMethodId:1
             
         }
-        console.log()
         this.props.placeOrder(reqBody);
+        alert("order Placed")
+        window.location.replace("/");
     }
     render() {
         return (
