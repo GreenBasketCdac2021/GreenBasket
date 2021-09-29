@@ -42,8 +42,9 @@ class Header extends React.Component{
                                             </Dropdown.Toggle>
 
                                             <Dropdown.Menu>
-                                                <Dropdown.Item onClick={()=>{window.location.replace("/orders")}}>My Orders</Dropdown.Item>
-                                                <Dropdown.Item onClick={()=>{this.props.resetStore();window.location.reload()}}>LogOut</Dropdown.Item>
+                                                {this.state.auth.role==="ADMIN"?
+                                                <Dropdown.Item onClick={()=>{window.location.replace("/allCustomers")}}>All Customors</Dropdown.Item>
+                                                :<></>}<Dropdown.Item onClick={()=>{this.props.resetStore();window.location.reload()}}>LogOut</Dropdown.Item>
                                             </Dropdown.Menu>
                                         </Dropdown>
 

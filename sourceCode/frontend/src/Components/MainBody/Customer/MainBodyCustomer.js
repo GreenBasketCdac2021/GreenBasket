@@ -36,7 +36,7 @@ class MainBody extends React.Component{
                     </Button>
                 
                 </Link>
-                <div style={{marginTop:"20vh"}}>a</div>
+                <div style={{marginTop:"30vh"}}></div>
             </div>
         );
     }
