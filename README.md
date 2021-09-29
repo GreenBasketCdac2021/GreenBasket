@@ -6,11 +6,11 @@
 
 ## Team Members:
 
-1. ###
-2. ###
-3. ###
-4. ### Sameesh Yadav: 55
-5. ###
+1. ### Akshay Nandanwar
+2. ### Anksuh Dharkar
+3. ### Ankit Gahukar
+4. ### Sameesh Yadav
+5. ### Suyash Varma
 
 <hr>
 <br>
