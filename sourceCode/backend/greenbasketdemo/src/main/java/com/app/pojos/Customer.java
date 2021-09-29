@@ -122,7 +122,7 @@ public class Customer extends BaseEntity {
 	private String lastName;
 	@Column(length=100,nullable=false )
 	private String email;
-	@Column(length=20,nullable=false )
+	@Column(length=256,nullable=false )
 	private String password;
 	@Column(length=50)
 	private String phone;

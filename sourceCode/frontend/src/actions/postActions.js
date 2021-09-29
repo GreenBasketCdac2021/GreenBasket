@@ -69,6 +69,8 @@ export const registerUser=(reqBody)=>dispatch=>{
     }
         
     ).catch((err) => {
+        if(err.response.data.errorCode=="CONFLICT")
+            alert(err.response.data.errorMessage);
         console.error(err);
     })
 }
@@ -138,10 +140,12 @@ export const deleteProductByID=(product)=>dispatch=>{
 
 export const addProductToCart=(reqBody)=>dispatch=>{
     axios.post("http://localhost:8080/cart/addproduct?productid="+reqBody.productid+"&quantity="+reqBody.quantity+"&custID="+reqBody.custID,JSON.stringify(reqBody))
-    .then(auth=>dispatch({
+    .then(auth=>{dispatch({
             type:ADD_PRODUCT_TO_CART,
             auth:auth.data
-    }))
+    })
+        alert("Product added to cart")
+    })
 }
 
 export const fetchCartItems=(reqBody)=>dispatch=>{

@@ -51,12 +51,15 @@ export class Cart extends React.Component {
                     </Row>
                     {store.getState().reduxStore.cartItems.map(
                             (singleFruitObject, index) =>  {
+                                if(singleFruitObject!==null){
                                 Total+=singleFruitObject.subTotal
                                 return <SingleCartItem key={index} 
                                     object={singleFruitObject} 
                                     spacing={2}
                                     type="FRUITS"
                                 />
+                                }
+                                return <></>
                             }
                         )}  
 
