@@ -36,7 +36,7 @@ class AllCustomers extends Component  {
             <div>
                     <Header/>
                         <div className="bg-secondary text-center">
-                            <h1 className="bg- text-success">Customer Details</h1>
+                            <h1 className="bg- text-info">Customer Details</h1>
                         </div>
                         <div className="bg-secondary" style={{height:'100vh'}}>
                             <Container cellSpacing={2}>

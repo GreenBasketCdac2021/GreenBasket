@@ -120,7 +120,7 @@ public class UserRestController {
 		}
 	}
 	
-	@DeleteMapping("/deleteProduct/{ppid}")
+	@PostMapping("/deleteProduct/{ppid}")
 	public ResponseEntity<?> deleteProductById(@PathVariable long ppid){
 		//
          ProductDetails product=userService.getProductById(ppid);

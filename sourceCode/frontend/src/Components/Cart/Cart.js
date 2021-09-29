@@ -13,7 +13,7 @@ export class Cart extends React.Component {
     constructor(props){
         super(props)
         this.state={
-            cart:store.getState().reduxStore.cartItems,
+            cart:[],
             flag:false,
             Total:0,
         }
@@ -28,8 +28,8 @@ export class Cart extends React.Component {
     refreshPage() {
         window.location.hash = "reload";
     }
-    Total=0;
     render() {
+        var Total=0;
         return (
             <div>
                 {window.onload=refreshPageOnece()}
@@ -49,10 +49,9 @@ export class Cart extends React.Component {
                             <b>Remove</b>
                         </Col>
                     </Row>
-                    {this.Total=null}
-                    {this.state.cart.map(
+                    {store.getState().reduxStore.cartItems.map(
                             (singleFruitObject, index) =>  {
-                                this.Total+=singleFruitObject.subTotal
+                                Total+=singleFruitObject.subTotal
                                 return <SingleCartItem key={index} 
                                     object={singleFruitObject} 
                                     spacing={2}
@@ -68,7 +67,7 @@ export class Cart extends React.Component {
                         <Col item>
                         </Col>
                         <Col item>
-                            <b>{this.Total}</b>
+                            <b>{Total}</b>
                         </Col>
                         <Col item>
                         </Col>

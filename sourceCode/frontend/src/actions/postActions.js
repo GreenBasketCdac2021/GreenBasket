@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,LOGIN_ADMIN_AUTH,RESET_STORE,DELETE_PRODUCT_BY_ID,UPDATE_PRODUCT,ADD_PRODUCT_TO_CART,GET_CART_ITEM,PLACE_ORDER,REGISTER_CUSTOMER} from "./types";
+import { FETCH_PRODUCTS,ADD_PRODUCT,LOGIN_CUST_AUTH,LOGIN_ADMIN_AUTH,RESET_STORE,DELETE_PRODUCT_BY_ID,DELETE_PRODUCT,UPDATE_PRODUCT,ADD_PRODUCT_TO_CART,GET_CART_ITEM,PLACE_ORDER,REGISTER_CUSTOMER} from "./types";
 import axios from 'axios';
 
 export const fetchProducts=()=>dispatch=>{
@@ -99,6 +99,17 @@ export const resetStore=()=>dispatch=>dispatch({
 })
 
 
+export const deleteProduct=(product)=>dispatch=>{
+    console.log("HERE",product)
+    axios.post('http://localhost:8080/user/deleteProduct/'+product)
+    .then(product=>{
+            dispatch({
+            type:DELETE_PRODUCT,
+            data:product
+        })
+        
+    }).catch(err =>console.error(err))
+}
 
 
 export const deleteProductByID=(product)=>dispatch=>{

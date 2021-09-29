@@ -5,7 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import { Container } from 'react-bootstrap';
 import store from '../../../store';
-import {deleteProductByID} from '../../../actions/postActions';
+import {deleteProduct} from '../../../actions/postActions';
 import {connect} from 'react-redux';
 import { Link } from "react-router-dom";
 class SingleProduct extends React.Component{
@@ -23,7 +23,7 @@ class SingleProduct extends React.Component{
     delete(obj){
         console.log(obj.id);
         
-        this.props.deleteProductByID(obj.id);
+        this.props.deleteProduct(obj.id);
         window.location.replace("/");
     }
 
@@ -63,4 +63,4 @@ class SingleProduct extends React.Component{
 const mapStateToProps =state=>({
     reduxStore:state.reduxStore
 })
-export default connect(mapStateToProps,{deleteProductByID})(SingleProduct);
+export default connect(mapStateToProps,{deleteProduct})(SingleProduct);
